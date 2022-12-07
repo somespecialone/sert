@@ -1,0 +1,38 @@
+name: Deploy Web-app
+
+on:
+  push:
+    branches: [ master ]
+    paths: [ "web-app/**" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: ./web-app
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+
+      - name: "Install and build app"
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_VIEWS_URL: ${{ secrets.VITE_VIEWS_URL }}
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: "Building and deploying to GitHub Pages"
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web-app/dist

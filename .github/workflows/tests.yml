@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+    paths: [ "service/**" ]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./service
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - run: pnpm install
+
+      - name: "Run Jest tests"
+        env:
+          DETA_BASE_NAME: ${{ secrets.DETA_BASE_NAME }}
+          DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
+        run: pnpm jest tests --ci
+
+        timeout-minutes: 30
+# TODO this
