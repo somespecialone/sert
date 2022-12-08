@@ -2,7 +2,13 @@ version: 2
 
 updates:
   - package-ecosystem: "npm"
-    directory: "/"
+    directory: "/service"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/web-app"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10

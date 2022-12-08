@@ -24,9 +24,11 @@ jobs:
 
       - name: "Run Jest tests"
         env:
-          DETA_BASE_NAME: ${{ secrets.DETA_BASE_NAME }}
           DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
+          DETA_BASE_NAME: ${{ secrets.DETA_BASE_NAME }}
+          LISTING_ID: ${{ secrets.LISTING_ID }}
+          ITEM_MARKET_NAME: ${{ secrets.ITEM_MARKET_NAME }}
+          LISTING_FILTER_PARAM: ${{ secrets.LISTING_FILTER_PARAM }}
         run: pnpm jest tests --ci
 
         timeout-minutes: 30
-# TODO this

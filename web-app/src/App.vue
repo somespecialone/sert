@@ -1,47 +1,43 @@
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+<script>
+import MainWindow from "./components/MainWindow.vue";
+export default {
+  components: { MainWindow },
+};
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="Container">
+    <MainWindow />
+    <div class="Background" />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style lang="scss">
+.Container {
+  position: fixed;
+  overflow: hidden;
+
+  width: 100vw;
+  height: 100vh;
+
+  & .Background {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    height: 130vw;
+    width: 130vw;
+
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(circle at left top, lightsalmon 0%, aquamarine 100%);
+    animation: rotate 15s infinite linear;
+  }
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+@keyframes rotate {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 </style>

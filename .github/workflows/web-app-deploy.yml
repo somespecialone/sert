@@ -26,7 +26,6 @@ jobs:
       - name: "Install and build app"
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
-          VITE_VIEWS_URL: ${{ secrets.VITE_VIEWS_URL }}
         run: |
           pnpm install
           pnpm build
