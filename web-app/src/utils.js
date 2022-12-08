@@ -1,5 +1,5 @@
 /**
- * Round to 2 fractionDigits..
+ * Round to 2 fractionDigits.
  * @param {number} value
  * @returns {number}
  */
