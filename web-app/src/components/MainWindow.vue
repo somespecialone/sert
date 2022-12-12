@@ -1,136 +1,55 @@
 <script>
 import Time from "./icons/Time.vue";
+import RatesChart from "./RatesChart.vue";
+import ConverterWindow from "./ConverterWindow.vue";
 
 import { Backend } from "@/services";
-import { myRound } from "@/utils";
 
 export default {
   name: "MainWindow",
-  components: { Time },
+  components: { Time, RatesChart, ConverterWindow },
   data() {
     return {
       rates: {},
-      values: {},
+      history: {},
     };
   },
   async mounted() {
-    const rates = await Backend.getRates();
-    rates.USD = [1, 0];
-    const values = { USD: 1 };
-    Object.entries(rates).forEach(([k, v]) => (values[k] = v[0]));
-
-    this.rates = rates;
-    this.values = values;
+    await this.updateRates();
+    await this.updateHistory();
   },
   methods: {
-    handleChange(key, value) {
-      const usdValue = myRound(value * (1 / this.rates[key][0]));
-      this.values[key] = value;
-      Object.entries(this.values).forEach(([k, _]) => {
-        if (key !== k) {
-          this.values[k] = myRound(usdValue * this.rates[k][0]);
-        }
-      });
+    async updateRates() {
+      const rates = await Backend.getRates();
+      rates.USD = [1, 0];
+      this.rates = rates;
     },
-    isExpired(key, expired = 24 * 60 * 60) {
-      return new Date().getTime() / 1000 - this.rates[key][1] >= expired;
+    async updateHistory() {
+      this.history = await Backend.getHistory();
     },
   },
 };
 </script>
 
 <template>
-  <div class="ContainerInner">
-    <div class="Name">Steam Market exchange converter</div>
-    <div class="Window">
-      <div class="CurrencyLine" v-for="[currencyKey, currencyValue] of Object.entries(values)">
-        <label :for="currencyKey">{{ currencyKey }}</label>
-        <input
-          :id="currencyKey"
-          type="number"
-          placeholder="😎"
-          :value="currencyValue"
-          @input="handleChange(currencyKey, $event.target.value)"
-        />
-        <!-- <Time v-if="currencyKey !== 'USD'" :style="{ fill: isExpired(currencyKey) ? 'red' : 'limegreen' }" /> -->
-      </div>
-    </div>
-    <div class="By">— By <a href="https://somespecial.one" target="_blank">somespecial.one</a> —</div>
+  <div class="MainWindow">
+    <ConverterWindow :rates="rates" />
+    <RatesChart :history="history" />
   </div>
 </template>
 
-<!--TODO window width 100% if mobile device-->
 <style scoped lang="scss">
-.ContainerInner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+.MainWindow {
+  width: 70%;
+  margin: 0 auto;
 
-  z-index: 10;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  height: 70vh;
-  width: 50vw;
-
-  transform: translate(-50%, -50%);
-
-  font-size: 3rem;
-  font-weight: 100;
-  color: white;
-
-  > div {
-    text-align: center;
-
-    > a {
-      transition: color 0.15s linear;
-
-      &:hover {
-        color: teal;
-      }
-    }
-  }
-
-  & .By a {
-    font-weight: 300;
-    color: white;
-  }
-
-  & .Window {
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.6);
-
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: black;
-
-    padding: 2%;
-
-    & .CurrencyLine {
-      margin: 0.5rem auto;
-      width: 50%;
-
-      display: flex;
-      justify-content: space-between;
-      vertical-align: center;
-
-      input {
-        box-sizing: border-box;
-        outline: none;
-        border: none;
-        border-bottom: 2px solid teal;
-
-        background: none;
-
-        font-family: "Roboto", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 300;
-      }
-
-      svg {
-        margin: auto 0;
+      & .Rates,
+      .Charts {
+        border-radius: 0 !important;
       }
     }
   }

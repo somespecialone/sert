@@ -6,11 +6,13 @@
     "email": "tkachenkodmitriy@yahoo.com"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "chart.js": "^4.0.1",
+    "vue": "^3.2.45",
+    "vue-chartjs": "^5.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",

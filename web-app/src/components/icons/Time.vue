@@ -19,8 +19,4 @@ export default {
   </svg>
 </template>
 
-<style scoped>
-svg {
-  height: 1.6rem;
-}
-</style>
+<style scoped></style>

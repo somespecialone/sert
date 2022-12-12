@@ -2,12 +2,16 @@ lockfileVersion: 5.4
 
 specifiers:
   '@vitejs/plugin-vue': ^3.2.0
+  chart.js: ^4.0.1
   sass: ^1.56.1
   vite: ^3.2.4
   vue: ^3.2.45
+  vue-chartjs: ^5.0.1
 
 dependencies:
+  chart.js: 4.0.1
   vue: 3.2.45
+  vue-chartjs: 5.0.1_chart.js@4.0.1+vue@3.2.45
 
 devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
@@ -160,6 +164,11 @@ packages:
     dependencies:
       fill-range: 7.0.1
     dev: true
+
+  /chart.js/4.0.1:
+    resolution: {integrity: sha512-5/8/9eBivwBZK81mKvmIwTb2Pmw4D/5h1RK9fBWZLLZ8mCJ+kfYNmV9rMrGoa5Hgy2/wVDBMLSUDudul2/9ihA==}
+    engines: {pnpm: ^7.0.0}
+    dev: false
 
   /chokidar/3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
@@ -589,6 +598,16 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /vue-chartjs/5.0.1_chart.js@4.0.1+vue@3.2.45:
+    resolution: {integrity: sha512-+0IfwyZ1U+oKU0CJmqgEMieov5K+c5AuZ7boJeDnhCC/qmtKTLId1jL7BID5poCaC38DOUbJu77vsA091aYeRw==}
+    peerDependencies:
+      chart.js: ^4.0.0
+      vue: ^3.0.0-0 || ^2.6.0
+    dependencies:
+      chart.js: 4.0.1
+      vue: 3.2.45
+    dev: false
 
   /vue/3.2.45:
     resolution: {integrity: sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA==}
