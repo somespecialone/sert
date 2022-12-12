@@ -1,5 +1,7 @@
-<p align="center">Steam exchange rate tracker</p>
+# <p align="center">Steam exchange rate tracker</p>
 
 > 9 * * * ? *
 
-> https://steam-exchange-rate-tracker.deta.dev/currencies
+> https://steam-exchange-rate-tracker.deta.dev/rates
+> 
+> https://steam-exchange-rate-tracker.deta.dev/history

@@ -1,5 +1,5 @@
 <script>
-import MainWindow from "./components/MainWindow.vue";
+import MainWindow from "@/components/MainWindow.vue";
 export default {
   components: { MainWindow },
 };
@@ -25,13 +25,13 @@ export default {
     left: 50%;
     top: 50%;
 
-    height: 130vw;
-    width: 130vw;
+    height: max(130vh, 130vw);
+    width: max(130vh, 130vw);
 
     transform: translate(-50%, -50%);
 
     background: radial-gradient(circle at left top, lightsalmon 0%, aquamarine 100%);
-    animation: rotate 15s infinite linear;
+    animation: rotate 30s infinite linear;
   }
 }
 

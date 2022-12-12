@@ -3,21 +3,24 @@ const express = require("express");
 let app;
 
 if (process.env.DETA_RUNTIME) {
-  const { App } = require("deta");
-
+  app = require("deta").App(express());
   const { updateCurrencies } = require("./cron/main.cron");
-
-  app = App(express());
   app.lib.cron(updateCurrencies);
 } else {
+  // dev mode
   require("dotenv").config();
+  const { updateCurrencies } = require("./cron/main.cron");
   app = express();
+  app.get("/update", async (req, res) => {
+    const data = await updateCurrencies({});
+    res.status(200).json(data);
+  });
 }
 
 const mainRouter = require("./routes/main.route");
 const { allowCors } = require("./middlewares/main.middleware");
 
-app.use(express.json());
+// app.use(express.json());
 app.use(allowCors);
 
 app.use("/", mainRouter);

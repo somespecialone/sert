@@ -1,7 +1,8 @@
 <script>
 import Time from "./icons/Time.vue";
 
-import { myRound } from "../utils";
+import { Backend } from "@/services";
+import { myRound } from "@/utils";
 
 export default {
   name: "MainWindow",
@@ -13,29 +14,23 @@ export default {
     };
   },
   async mounted() {
-    const resp = await fetch(import.meta.env.VITE_API_URL + "/currencies");
-    const rates = await resp.json();
-    const values = { USD: rates.USD[0] };
-    for (const [currencyKey, currencyValue] of Object.entries(rates)) {
-      if (currencyKey !== "USD") {
-        values[currencyKey] = currencyValue[0];
-      }
-    }
+    const rates = await Backend.getRates();
+    rates.USD = [1, 0];
+    const values = { USD: 1 };
+    Object.entries(rates).forEach(([k, v]) => (values[k] = v[0]));
 
     this.rates = rates;
     this.values = values;
   },
   methods: {
     handleChange(key, value) {
-      value = myRound(value);
-      const toUSDCoef = this.rates.USD[0] / this.rates[key][0]; // 0.027
-      const usdValue = myRound(value * toUSDCoef);
+      const usdValue = myRound(value * (1 / this.rates[key][0]));
       this.values[key] = value;
-      for (const [currencyKey, _] of Object.entries(this.values)) {
-        if (key !== currencyKey) {
-          this.values[currencyKey] = myRound(usdValue * this.rates[currencyKey][0]);
+      Object.entries(this.values).forEach(([k, _]) => {
+        if (key !== k) {
+          this.values[k] = myRound(usdValue * this.rates[k][0]);
         }
-      }
+      });
     },
     isExpired(key, expired = 24 * 60 * 60) {
       return new Date().getTime() / 1000 - this.rates[key][1] >= expired;
@@ -53,19 +48,18 @@ export default {
         <input
           :id="currencyKey"
           type="number"
-          placeholder="value"
+          placeholder="😎"
           :value="currencyValue"
-          @change="handleChange(currencyKey, $event.target.value)"
+          @input="handleChange(currencyKey, $event.target.value)"
         />
-        <Time :style="{ fill: isExpired(currencyKey) ? 'red' : 'limegreen' }" />
+        <!-- <Time v-if="currencyKey !== 'USD'" :style="{ fill: isExpired(currencyKey) ? 'red' : 'limegreen' }" /> -->
       </div>
     </div>
-    <div class="By">
-      — By <a href="https://github.com/somespecialone" target="_blank">somespecialone</a> —
-    </div>
+    <div class="By">— By <a href="https://somespecial.one" target="_blank">somespecial.one</a> —</div>
   </div>
 </template>
 
+<!--TODO window width 100% if mobile device-->
 <style scoped lang="scss">
 .ContainerInner {
   position: absolute;
@@ -97,6 +91,11 @@ export default {
         color: teal;
       }
     }
+  }
+
+  & .By a {
+    font-weight: 300;
+    color: white;
   }
 
   & .Window {

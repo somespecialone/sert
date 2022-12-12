@@ -1,6 +1,8 @@
 const { Deta } = require("deta");
 
+const { DETA_BASE_NAME } = require("../constants");
+
 const deta = Deta();
-const db = deta.Base(process.env.DETA_BASE_NAME || "steam-exchange-rate-tracker");
+const db = deta.Base(DETA_BASE_NAME);
 
 module.exports = { deta, db };
