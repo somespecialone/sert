@@ -3,6 +3,9 @@ import Github from "@/components/icons/Github.vue";
 
 import { getRandomArbitrary } from "@/utils";
 
+const MIN_DELAY = 21000;
+const MAX_DELAY = 36000;
+
 export default {
   name: "GithubIco",
   components: { Github },
@@ -13,14 +16,14 @@ export default {
     };
   },
   mounted() {
-    setTimeout(this.toggleIdle, getRandomArbitrary(7000, 11000));
+    setTimeout(this.toggleIdle, getRandomArbitrary(MIN_DELAY, MAX_DELAY));
   },
   watch: {
     inIdle() {
       if (this.inIdle) {
-        setTimeout(this.toggleIdle, 1401); // turn off
+        setTimeout(this.toggleIdle, 801); // turn off
       } else {
-        setTimeout(this.toggleIdle, getRandomArbitrary(7000, 11000));
+        setTimeout(this.toggleIdle, getRandomArbitrary(MIN_DELAY, MAX_DELAY));
       }
     },
   },
@@ -59,7 +62,7 @@ a {
   }
 
   &.Idle {
-    animation: idle 0.7s infinite reverse;
+    animation: idle 0.4s infinite reverse;
   }
 }
 
