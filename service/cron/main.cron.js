@@ -10,6 +10,7 @@ const {
   ratesPrefix,
   historyPrefix,
   currenciesToFetch,
+  STEAM_CURRENCIES_UPDATE_HOUR,
 } = require("../constants");
 
 const listingURL = "https://steamcommunity.com/market/listings/730/" + encodeURIComponent(ITEM_MARKET_NAME);
@@ -20,25 +21,43 @@ const USD = [1, "USD"];
 const updateCurrencies = async (event) => {
   const items = [];
   let originalToUSDRate = 1; // original currency rate to USD
-  let originalCurrencyId = 0;
 
   const querySet = await db.fetch();
-  const prepared = querySet.items.reduce((resObj, v) => {
-    resObj[v.key] = v;
+
+  // all histories, even not omitted
+  const histories = querySet.items.reduce((resObj, v) => {
+    resObj[v.key] = v.history;
     return resObj;
   }, {});
 
-  for (const [currencyId, currencyName] of [USD, ...currenciesToFetch]) {
-    const ratesKey = ratesPrefix + currencyName;
-    const historyKey = historyPrefix + currencyName;
+  // not expired items, no need to fetch it
+  let toOmit = [];
 
-    if (originalCurrencyId === currencyId) {
-      continue;
-    } else if (
-      !(new Date().getTime() / 1000 - (prepared[ratesKey] || { updated: 0 }).updated > 24 * 59 * 60)
-    ) {
-      continue;
-    }
+  // omit nothing if now is STEAM_CURRENCIES_UPDATE_HOUR
+  const nowLocal = new Date();
+  const nowUTC = new Date(nowLocal.getTime() + nowLocal.getTimezoneOffset() * 60 * 1000);
+  const utcHour = nowUTC.getHours();
+  if (utcHour !== STEAM_CURRENCIES_UPDATE_HOUR) {
+    toOmit = querySet.items.reduce((resArr, v) => {
+      if (v.key.startsWith(ratesPrefix)) {
+        const updated = new Date(v.updated * 1000);
+
+        const hourUpdated = updated.getHours();
+        const dateUpdated = updated.toDateString();
+        const dateNowUTC = nowUTC.toDateString();
+        if (dateUpdated === dateNowUTC && hourUpdated >= STEAM_CURRENCIES_UPDATE_HOUR) {
+          resArr.push(v.key.split(ratesPrefix)[1]); // omit
+        }
+      }
+      return resArr;
+    }, []);
+  }
+
+  // if all updated in time there is no need to fetch something
+  if (currenciesToFetch.every(([_, currName]) => toOmit.includes(currName))) return items;
+
+  for (const [currencyId, currencyName] of [USD, ...currenciesToFetch]) {
+    if (toOmit.includes(currencyName)) continue;
 
     const resp = await fetch(
       listingURL +
@@ -49,34 +68,40 @@ const updateCurrencies = async (event) => {
         headers,
       }
     );
+
     if (resp.ok) {
       const resJson = await resp.json();
       const listingData = resJson["listinginfo"][LISTING_ID];
-      if (!listingData) continue;
+      if (!Object.entries(listingData).length) continue;
 
-      const updated = Math.round(new Date().getTime() / 1000); // ts in seconds
+      // UTC ts in seconds
+      const updated = Math.round((new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000) / 1000);
 
       if (currencyId === 1) {
         originalToUSDRate = myRound(listingData["price"] / listingData["converted_price"]);
+
+        // original listing currency if she in to fetch list and not omitted due to update time
         const originalCurrency = currenciesToFetch.find((v) => v[0] === listingData["currencyid"] - 2000);
-        if (originalCurrency) {
-          const originalRateKey = ratesPrefix + originalCurrency[1];
-          const originalHistoryKey = historyPrefix + originalCurrency[1];
-          const originalHistory = (prepared[originalHistoryKey] || { history: [] }).history;
+        if (originalCurrency.length && !toOmit.includes(originalCurrency[1])) {
+          const ratesKey = ratesPrefix + originalCurrency[1];
+          const historyKey = historyPrefix + originalCurrency[1];
+          const originalHistory = histories[historyKey] || [];
           originalHistory.unshift([originalToUSDRate, updated]);
 
-          items.push({ key: originalRateKey, updated, rate: originalToUSDRate });
+          items.push({ key: ratesKey, updated, rate: originalToUSDRate });
           items.push({
-            key: originalHistoryKey,
+            key: historyKey,
             updated,
             history: chunkArray(originalHistory, HISTORY_LENGTH)[0],
           });
 
-          originalCurrencyId = originalCurrency[0];
+          toOmit.push(originalCurrency[1]);
         }
       } else {
+        const ratesKey = ratesPrefix + currencyName;
+        const historyKey = historyPrefix + currencyName;
         const rate = myRound((listingData["converted_price"] / listingData["price"]) * originalToUSDRate);
-        const history = (prepared[historyKey] || { history: [] }).history;
+        const history = histories[historyKey] || [];
         history.unshift([rate, updated]);
 
         items.push({ key: ratesKey, updated, rate });
@@ -85,6 +110,7 @@ const updateCurrencies = async (event) => {
     } else if (resp.status === 429) break;
   }
 
+  // save chunks
   if (items.length) {
     for (const chunk of chunkArray(items, DETA_PUT_MANY_MAX_COUNT)) {
       await db.putMany(chunk);
