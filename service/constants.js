@@ -9,8 +9,6 @@ const ITEM_MARKET_NAME = process.env.ITEM_MARKET_NAME;
 const LISTING_FILTER_PARAM = process.env.LISTING_FILTER_PARAM || "";
 const LISTING_START_PARAM = process.env.LISTING_START_PARAM || 0;
 
-const STEAM_CURRENCIES_UPDATE_HOUR = Number(process.env.STEAM_CURRENCIES_UPDATE_HOUR || 8); // UTC
-
 const ratesPrefix = "rate-";
 const historyPrefix = "history-";
 
@@ -34,5 +32,4 @@ module.exports = {
   ratesPrefix,
   historyPrefix,
   currenciesToFetch,
-  STEAM_CURRENCIES_UPDATE_HOUR,
 };

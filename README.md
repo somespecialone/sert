@@ -1,4 +1,4 @@
-# <p align="center">Steam exchange rate tracker</p>
+# <p align="center">Steam Exchange Rate Tracker</p>
 
 > 9 * * * ? *
 

@@ -10,7 +10,6 @@ const {
   ratesPrefix,
   historyPrefix,
   currenciesToFetch,
-  STEAM_CURRENCIES_UPDATE_HOUR,
 } = require("../constants");
 
 const listingURL = "https://steamcommunity.com/market/listings/730/" + encodeURIComponent(ITEM_MARKET_NAME);
@@ -30,28 +29,18 @@ const updateCurrencies = async (event) => {
     return resObj;
   }, {});
 
-  // not expired items, no need to fetch it
-  let toOmit = [];
-
-  // omit nothing if now is STEAM_CURRENCIES_UPDATE_HOUR
   const nowLocal = new Date();
   const nowUTC = new Date(nowLocal.getTime() + nowLocal.getTimezoneOffset() * 60 * 1000);
-  const utcHour = nowUTC.getHours();
-  if (utcHour !== STEAM_CURRENCIES_UPDATE_HOUR) {
-    toOmit = querySet.items.reduce((resArr, v) => {
-      if (v.key.startsWith(ratesPrefix)) {
-        const updated = new Date(v.updated * 1000);
+  const toOmit = querySet.items.reduce((resArr, v) => {
+    if (v.key.startsWith(ratesPrefix)) {
+      const updated = new Date(v.updated * 1000);
 
-        const hourUpdated = updated.getHours();
-        const dateUpdated = updated.toDateString();
-        const dateNowUTC = nowUTC.toDateString();
-        if (dateUpdated === dateNowUTC && hourUpdated >= STEAM_CURRENCIES_UPDATE_HOUR) {
-          resArr.push(v.key.split(ratesPrefix)[1]); // omit
-        }
+      if (updated.toDateString() === nowUTC.toDateString()) {
+        resArr.push(v.key.split(ratesPrefix)[1]); // omit
       }
-      return resArr;
-    }, []);
-  }
+    }
+    return resArr;
+  }, []);
 
   // if all updated in time there is no need to fetch something
   if (currenciesToFetch.every(([_, currName]) => toOmit.includes(currName))) return items;
@@ -75,7 +64,7 @@ const updateCurrencies = async (event) => {
       if (!Object.entries(listingData).length) continue;
 
       // UTC ts in seconds
-      const updated = Math.round((new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000) / 1000);
+      const updated = Math.round(nowUTC / 1000);
 
       if (currencyId === 1) {
         originalToUSDRate = myRound(listingData["price"] / listingData["converted_price"]);
