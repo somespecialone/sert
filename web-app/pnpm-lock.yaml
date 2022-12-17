@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@vitejs/plugin-vue': ^3.2.0
   chart.js: ^4.0.1
+  chartjs-plugin-datalabels: ^2.2.0
   sass: ^1.56.1
   vite: ^3.2.4
   vue: ^3.2.45
@@ -10,6 +11,7 @@ specifiers:
 
 dependencies:
   chart.js: 4.0.1
+  chartjs-plugin-datalabels: 2.2.0_chart.js@4.0.1
   vue: 3.2.45
   vue-chartjs: 5.0.1_chart.js@4.0.1+vue@3.2.45
 
@@ -168,6 +170,14 @@ packages:
   /chart.js/4.0.1:
     resolution: {integrity: sha512-5/8/9eBivwBZK81mKvmIwTb2Pmw4D/5h1RK9fBWZLLZ8mCJ+kfYNmV9rMrGoa5Hgy2/wVDBMLSUDudul2/9ihA==}
     engines: {pnpm: ^7.0.0}
+    dev: false
+
+  /chartjs-plugin-datalabels/2.2.0_chart.js@4.0.1:
+    resolution: {integrity: sha512-14ZU30lH7n89oq+A4bWaJPnAG8a7ZTk7dKf48YAzMvJjQtjrgg5Dpk9f+LbjCF6bpx3RAGTeL13IXpKQYyRvlw==}
+    peerDependencies:
+      chart.js: '>=3.0.0'
+    dependencies:
+      chart.js: 4.0.1
     dev: false
 
   /chokidar/3.5.3:
