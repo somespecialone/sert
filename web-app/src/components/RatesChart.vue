@@ -77,10 +77,11 @@ export default {
   watch: {
     history(newHistory) {
       const datasets = Object.entries(newHistory).reduce((newArr, [currKey, entries]) => {
+        const color = COLORS[currKey];
         newArr.push({
           label: currKey,
-          backgroundColor: COLORS[currKey],
-          borderColor: COLORS[currKey],
+          backgroundColor: color,
+          borderColor: color,
           data: entries.reduce((newEntryArr, [rate, ts]) => {
             const [y, changePoints] = this.calcChangePercentPoints(entries[entries.length - 1][0], rate);
             newEntryArr.push({ y, x: new Date(ts * 1000).toDateString(), rate, changePoints });

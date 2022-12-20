@@ -33,9 +33,6 @@ export default {
         }
       });
     },
-    isExpired(key, expired = 24 * 60 * 60) {
-      return new Date().getTime() / 1000 - this.rates[key][1] >= expired;
-    },
   },
 };
 </script>

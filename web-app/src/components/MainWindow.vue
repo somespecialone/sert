@@ -1,5 +1,4 @@
 <script>
-import Time from "./icons/Time.vue";
 import RatesChart from "./RatesChart.vue";
 import ConverterWindow from "./ConverterWindow.vue";
 
@@ -7,7 +6,7 @@ import { Backend } from "@/services";
 
 export default {
   name: "MainWindow",
-  components: { Time, RatesChart, ConverterWindow },
+  components: { RatesChart, ConverterWindow },
   data() {
     return {
       rates: {},

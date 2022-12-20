@@ -21,8 +21,6 @@ const currenciesToFetch = CURRENCIES_TO_FETCH.split(",").reduce((targetArr, curN
   return targetArr;
 }, []);
 
-console.info(currenciesToFetch);
-
 const updateCurrencies = async (event) => {
   const items = [];
   let originalToUSDRate = 1; // original currency rate to USD

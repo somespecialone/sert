@@ -1,5 +1,5 @@
 const { db } = require("../config/db.config");
-const { RATES_PREFIX, HISTORY_PREFIX, HISTORY_LENGTH } = require("../constants");
+const { RATES_PREFIX, HISTORY_PREFIX, HISTORY_LENGTH, CURRENCIES } = require("../constants");
 
 const ratesQuery = { "key?pfx": RATES_PREFIX };
 const historyQuery = { "key?pfx": HISTORY_PREFIX };
@@ -7,10 +7,14 @@ const historyQuery = { "key?pfx": HISTORY_PREFIX };
 const getCurrencyRates = async (req, res) => {
   const querySet = await db.fetch(ratesQuery);
   res.status(200).json(
-    querySet.items.reduce((resObj, v) => {
-      resObj[v.key.slice(RATES_PREFIX.length)] = [v.rate, v.updated];
-      return resObj;
-    }, {})
+    querySet.items
+      .sort((a, b) =>
+        CURRENCIES[a.key.slice(RATES_PREFIX.length)] > CURRENCIES[b.key.slice(RATES_PREFIX.length)] ? 1 : -1
+      )
+      .reduce((resObj, v) => {
+        resObj[v.key.slice(RATES_PREFIX.length)] = [v.rate, v.updated];
+        return resObj;
+      }, {})
   );
 };
 
