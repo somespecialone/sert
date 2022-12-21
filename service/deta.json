@@ -1,0 +1,14 @@
+{
+  "name": "SERT",
+  "description": "Convert Steam Market currencies with easy!",
+  "runtime": "nodejs14.x",
+  "env": [
+    {
+      "key": "LISTING_ID",
+      "description": "...",
+      "value": 0,
+      "required": true
+    }
+  ],
+  "cron": "9,39 * * * ? *"
+}

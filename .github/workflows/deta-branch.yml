@@ -1,0 +1,22 @@
+name: Push to deta branch
+
+on:
+  push:
+    branches: [ "master" ]
+    paths: [ "service/**" ]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: "./service"
+
+      - name: "Commit & push files to deta branch"
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'service'
+          cwd: './service'
+          fetch: false
+          new_branch: deta-branch

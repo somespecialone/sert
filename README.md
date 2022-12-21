@@ -7,16 +7,21 @@
 
 ---
 
-[![Deta deploy](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/somespecialone/sert.git)
+[![Deta deploy](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/somespecialone/sert/tree/deta-branch)
 
 ---
 
 > 9,39 * * * ? *
 
 > https://steam-exchange-rate-tracker.deta.dev/rates
-> 
+>
 > https://steam-exchange-rate-tracker.deta.dev/history
-> 
+>
 > https://steam-exchange-rate-tracker.deta.dev/history?length=20
-> 
+>
 > https://steam-exchange-rate-tracker.deta.dev/history?all
+
+### TODO:
+
+- [ ] fill readme.
+- [ ] try to make PWA.

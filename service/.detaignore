@@ -1,3 +1,4 @@
 pnpm-lock.yaml
 tests
 node_modules
+deta.json
