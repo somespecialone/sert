@@ -8,8 +8,8 @@ const getCurrencyRates = async (req, res) => {
   const querySet = await db.fetch(ratesQuery);
   res.status(200).json(
     querySet.items
-      .sort((a, b) =>
-        CURRENCIES[a.key.slice(RATES_PREFIX.length)] > CURRENCIES[b.key.slice(RATES_PREFIX.length)] ? 1 : -1
+      .sort(
+        (a, b) => CURRENCIES[a.key.slice(RATES_PREFIX.length)] - CURRENCIES[b.key.slice(RATES_PREFIX.length)]
       )
       .reduce((resObj, v) => {
         resObj[v.key.slice(RATES_PREFIX.length)] = [v.rate, v.updated];
@@ -30,10 +30,15 @@ const getCurrenciesHistory = async (req, res) => {
 
   const querySet = await db.fetch(historyQuery);
   res.status(200).json(
-    querySet.items.reduce((resObj, v) => {
-      resObj[v.key.slice(HISTORY_PREFIX.length)] = v.history.slice(0, lengthHistory);
-      return resObj;
-    }, {})
+    querySet.items
+      .sort(
+        (a, b) =>
+          CURRENCIES[a.key.slice(HISTORY_PREFIX.length)] - CURRENCIES[b.key.slice(HISTORY_PREFIX.length)]
+      )
+      .reduce((resObj, v) => {
+        resObj[v.key.slice(HISTORY_PREFIX.length)] = v.history.slice(0, lengthHistory);
+        return resObj;
+      }, {})
   );
 };
 

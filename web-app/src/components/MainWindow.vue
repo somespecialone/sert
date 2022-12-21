@@ -14,17 +14,14 @@ export default {
     };
   },
   async mounted() {
-    await this.updateRates();
-    await this.updateHistory();
+    await this.initData();
   },
   methods: {
-    async updateRates() {
-      const rates = await Backend.getRates();
-      rates.USD = [1, 0];
-      this.rates = rates;
-    },
-    async updateHistory() {
+    async initData() {
       this.history = await Backend.getHistory();
+      const rates = { USD: [1, 0] };
+      Object.entries(this.history).forEach(([k, v]) => (rates[k] = [v[0][0], v[0][1]]));
+      this.rates = rates;
     },
   },
 };

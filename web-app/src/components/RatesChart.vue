@@ -16,10 +16,10 @@ const chartOptions = {
   maintainAspectRatio: false,
   layout: {
     padding: {
-      top: 12,
-      right: 20,
-      bottom: 12,
-      left: 20,
+      top: 12 * 1.5,
+      right: 20 * 1.5,
+      bottom: 12 * 1.5,
+      left: 20 * 1.5,
     },
   },
   plugins: {
@@ -75,8 +75,13 @@ export default {
     };
   },
   watch: {
-    history(newHistory) {
-      const datasets = Object.entries(newHistory).reduce((newArr, [currKey, entries]) => {
+    history() {
+      this.updateChartData();
+    },
+  },
+  methods: {
+    updateChartData() {
+      const datasets = Object.entries(this.history).reduce((newArr, [currKey, entries]) => {
         const color = COLORS[currKey];
         newArr.push({
           label: currKey,
@@ -93,8 +98,6 @@ export default {
 
       this.chartData = { datasets };
     },
-  },
-  methods: {
     calcChangePercentPoints(oldValue, newValue) {
       const changePoints = myRound(newValue - oldValue);
       return [myRound(changePoints / newValue), changePoints];
@@ -111,7 +114,9 @@ export default {
 
 <style scoped lang="scss">
 .Charts {
-  padding: var(--pd);
+  height: 35%;
+
+  padding: calc(var(--pd) / 4);
 
   border-radius: 0 0 var(--br) var(--br);
   background: rgba(0, 0, 0, 0.5);

@@ -21,7 +21,7 @@ export default {
   watch: {
     inIdle() {
       if (this.inIdle) {
-        setTimeout(this.toggleIdle, 801); // turn off
+        setTimeout(this.toggleIdle, 501); // turn off
       } else {
         setTimeout(this.toggleIdle, getRandomArbitrary(MIN_DELAY, MAX_DELAY));
       }
@@ -62,7 +62,7 @@ a {
   }
 
   &.Idle {
-    animation: idle 0.4s infinite reverse;
+    animation: idle 0.25s infinite reverse;
   }
 }
 

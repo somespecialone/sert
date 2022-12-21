@@ -10,6 +10,7 @@ const {
   HISTORY_PREFIX,
   CURRENCIES,
   CURRENCIES_TO_FETCH,
+  RATE_LIMIT,
 } = require("../constants");
 
 const listingURL = "https://steamcommunity.com/market/listings/730/" + encodeURIComponent(ITEM_MARKET_NAME);
@@ -49,8 +50,10 @@ const updateCurrencies = async (event) => {
   // if all updated in time there is no need to fetch something
   if (currenciesToFetch.every(([_, currName]) => toOmit.includes(currName))) return items;
 
+  let i = 0;
   for (const [currencyId, currencyName] of [[1, "USD"], ...currenciesToFetch]) {
     if (toOmit.includes(currencyName)) continue;
+    if (i === RATE_LIMIT) break;
 
     const resp = await fetch(
       listingURL +
@@ -61,6 +64,7 @@ const updateCurrencies = async (event) => {
         headers,
       }
     );
+    i++;
 
     if (resp.ok) {
       const resJson = await resp.json();

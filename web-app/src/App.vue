@@ -73,7 +73,7 @@ export default {
       transition: color 0.15s linear;
 
       &:hover {
-        color: lightseagreen;
+        color: var(--accent-color);
       }
     }
   }

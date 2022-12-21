@@ -12,6 +12,7 @@ const LISTING_START_PARAM = process.env.LISTING_START_PARAM || 0;
 // without USD. Count above 3 currencies without original listing currency may cause rate limit by Steam.
 // Do not work if original currency is USD.
 const CURRENCIES_TO_FETCH = process.env.CURRENCIES_TO_FETCH || "EUR,RUB,UAH";
+const RATE_LIMIT = Number(process.env.RATE_LIMIT || 4);
 
 const RATES_PREFIX = "rate-";
 const HISTORY_PREFIX = "history-";
@@ -82,4 +83,5 @@ module.exports = {
   HISTORY_PREFIX,
   CURRENCIES,
   CURRENCIES_TO_FETCH,
+  RATE_LIMIT,
 };
