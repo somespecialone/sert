@@ -15,7 +15,7 @@ jobs:
         run: |
           git rm -rf .
           git checkout HEAD -- service
-          cp service/* .
+          cp service/* . -r
           git rm -rf service
 
       - name: "Commit & push files to deta branch"
