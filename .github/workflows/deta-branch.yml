@@ -1,9 +1,8 @@
 name: Push to deta branch
 
 on:
-  push:
-    branches: [ "master" ]
-    paths: [ "service/**", ".github/workflows/deta-branch.yml" ]
+  release:
+    types: [ published ]
 
 jobs:
   main:
@@ -21,5 +20,4 @@ jobs:
       - name: "Commit & push files to deta branch"
         uses: EndBug/add-and-commit@v9
         with:
-          fetch: false
           new_branch: deta-branch
