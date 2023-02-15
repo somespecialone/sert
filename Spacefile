@@ -1,0 +1,39 @@
+v: 0
+app_name: "SERT"
+micros:
+  - name: frontend
+    src: frontend
+    engine: svelte
+    primary: true
+    public_routes:
+      - "*"
+
+  - name: backend
+    src: backend
+    engine: nodejs16
+    path: api
+    public_routes:
+      - "/rates"
+      - "/history"
+    actions:
+      - id: "update-prices"
+        name: "Update prices"
+        trigger: "schedule"
+        default_interval: "9,39 * * * ?"
+    presets:
+      env:
+        - name: LISTING_ID
+          description: "Market or listing id of listing."
+        - name: ITEM_MARKET_NAME
+          description: "Item market hash name."
+        - name: LISTING_FILTER_PARAM
+          description: "Search listing query. Optional."
+        - name: LISTING_START_PARAM
+          description: "Offset of listings. Optional."
+        - name: ALLOW_ORIGIN
+          description: "CORS Header. Optional."
+        - name: CURRENCIES_TO_FETCH
+          description: "Just currencies. Don't pass USD. Optional."
+          default: "EUR,RUB,TRY,UAH,CNY,KZT"
+        - name: RATE_LIMIT
+          description: "Max count of currencies to fetch in single round. Optional."
