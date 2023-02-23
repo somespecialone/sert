@@ -2,6 +2,7 @@
 
 [![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
 [![license](https://img.shields.io/github/license/somespecialone/sert)](https://github.com/somespecialone/sert/blob/master/LICENSE)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
 ---
 
@@ -20,5 +21,5 @@
 ### TODO:
 
 - [ ] fill readme.
-- [ ] try to make PWA.
+- [ ] ~~try to make PWA.~~
 - [ ] backend ts or smth.
