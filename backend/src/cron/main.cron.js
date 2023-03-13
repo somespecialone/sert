@@ -10,8 +10,9 @@ const updateCurrencyRates = async () => {
   const LISTING_START_PARAM = process.env.LISTING_START_PARAM || 0;
   const CURRENCIES_TO_FETCH = process.env.CURRENCIES_TO_FETCH || "EUR,RUB,UAH";
   const RATE_LIMIT = Number(process.env.RATE_LIMIT || 4);
+  const STEAM_GAME_ID = process.env.STEAM_GAME_ID || "730";
 
-  const listingURL = "https://steamcommunity.com/market/listings/730/" + encodeURIComponent(ITEM_MARKET_NAME);
+  const listingURL = `https://steamcommunity.com/market/listings/${STEAM_GAME_ID}/${encodeURIComponent(ITEM_MARKET_NAME)}`;
 
   const currenciesToFetch = CURRENCIES_TO_FETCH.split(",").reduce((targetArr, curName) => {
     const trimmed = curName.trim();

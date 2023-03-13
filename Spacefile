@@ -1,5 +1,7 @@
 v: 0
+
 app_name: "SERT"
+
 micros:
   - name: frontend
     src: frontend
@@ -37,3 +39,5 @@ micros:
           default: "EUR,RUB,TRY,UAH,CNY,KZT"
         - name: RATE_LIMIT
           description: "Max count of currencies to fetch in single round. Optional."
+        - name: STEAM_GAME_ID
+          description: "App id of game. Optional. Default CSGO"
