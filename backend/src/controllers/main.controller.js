@@ -19,7 +19,10 @@ const getCurrencyRates = async (req, res) => {
 };
 
 const getCurrenciesHistory = async (req, res) => {
-  const { length = Number(process.env.HISTORY_LENGHT || 30), all = false } = req.query;
+  // const
+  const HISTORY_LENGTH = Number(process.env.HISTORY_LENGTH || 30);
+
+  const { length = HISTORY_LENGTH, all = false } = req.query;
   let lengthHistory = Number(length);
 
   if (!lengthHistory || lengthHistory < 0) {

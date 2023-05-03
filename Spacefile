@@ -7,8 +7,7 @@ micros:
     src: frontend
     engine: svelte
     primary: true
-    public_routes:
-      - "*"
+    public: true
 
   - name: backend
     src: backend
@@ -38,6 +37,10 @@ micros:
           description: "Just currencies. Don't pass USD. Optional."
           default: "EUR,RUB,TRY,UAH,CNY,KZT"
         - name: RATE_LIMIT
-          description: "Max count of currencies to fetch in single round. Optional."
+          description: "Max count of currencies to fetch in single round. Optional. Default 4"
         - name: STEAM_GAME_ID
-          description: "App id of game. Optional. Default CSGO"
+          description: "App id of game. Optional. Default CSGO (730)."
+        - name: HISTORY_SIZE
+          description: "Size of cashed history. Optional. Default 150."
+        - name: HISTORY_LENGTH
+          description: "Length of history response. Optional. Default 30."

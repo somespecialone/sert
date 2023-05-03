@@ -11,8 +11,11 @@ const updateCurrencyRates = async () => {
   const CURRENCIES_TO_FETCH = process.env.CURRENCIES_TO_FETCH || "EUR,RUB,UAH";
   const RATE_LIMIT = Number(process.env.RATE_LIMIT || 4);
   const STEAM_GAME_ID = process.env.STEAM_GAME_ID || "730";
+  const HISTORY_SIZE = Number(process.env.HISTORY_SIZE || 150);
 
-  const listingURL = `https://steamcommunity.com/market/listings/${STEAM_GAME_ID}/${encodeURIComponent(ITEM_MARKET_NAME)}`;
+  const listingURL = `https://steamcommunity.com/market/listings/${STEAM_GAME_ID}/${encodeURIComponent(
+    ITEM_MARKET_NAME
+  )}`;
 
   const currenciesToFetch = CURRENCIES_TO_FETCH.split(",").reduce((targetArr, curName) => {
     const trimmed = curName.trim();
@@ -79,7 +82,9 @@ const updateCurrencyRates = async () => {
         if (originalCurrency.length && !toOmit.includes(originalCurrency[1])) {
           const ratesKey = RATES_PREFIX + originalCurrency[1];
           const historyKey = HISTORY_PREFIX + originalCurrency[1];
-          const originalHistory = histories[historyKey] || [];
+          const originalHistory = histories[historyKey]
+            ? chunkArray(histories[historyKey], HISTORY_SIZE)[0]
+            : [];
           originalHistory.unshift([originalToUSDRate, updated]);
 
           items.push({ key: ratesKey, updated, rate: originalToUSDRate });
@@ -91,7 +96,7 @@ const updateCurrencyRates = async () => {
         const ratesKey = RATES_PREFIX + currencyName;
         const historyKey = HISTORY_PREFIX + currencyName;
         const rate = myRound((listingData["converted_price"] / listingData["price"]) * originalToUSDRate);
-        const history = histories[historyKey] || [];
+        const history = histories[historyKey] ? chunkArray(histories[historyKey], HISTORY_SIZE)[0] : [];
         history.unshift([rate, updated]);
 
         items.push({ key: ratesKey, updated, rate });
@@ -115,10 +120,7 @@ const handleActionRequest = async (req, res) => {
   if (event.id === "update-prices") {
     const items = await updateCurrencyRates();
     res.status(200).json(items);
-    return;
-  }
-
-  res.sendStatus(400);
+  } else res.sendStatus(400);
 };
 
 module.exports = { handleActionRequest };

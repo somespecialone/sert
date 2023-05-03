@@ -97,7 +97,6 @@
 
       label {
         margin: auto 0;
-				color: var(--accent-second);
       }
 
       input {

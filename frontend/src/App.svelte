@@ -4,8 +4,8 @@
 
   import ratesService from "@/services/rates";
   import ratesStored from "@/stores/rates";
-  import { getRandomArbitrary } from "@/utils";
-  import { ANIM_MIN_DELAY, ANIM_MAX_DELAY } from "@/constants";
+  import { getRandomArbitrary, getRandomColor } from "@/utils";
+  import { ANIM_MIN_DELAY, ANIM_MAX_DELAY, COLORS } from "@/constants";
 
   import Converter from "@/components/Converter.svelte";
   import RatesCharts from "@/components/RatesCharts.svelte";
@@ -33,7 +33,10 @@
 
     const rates = get(ratesStored);
     history = await ratesService.getHistory();
-    Object.entries(history).forEach(([k, v]) => (rates[k] = [v[0][0], v[0][1]]));
+    Object.entries(history).forEach(([k, v]) => {
+      !COLORS[k] && (COLORS[k] = getRandomColor().next().value); // generate color if there is not
+      rates[k] = [v[0][0], v[0][1]];
+    });
     ratesStored.set(rates);
   });
 
@@ -41,10 +44,9 @@
 </script>
 
 <header>
-  <div>STEAM EXCHANGE RATE TRACKER</div>
+  <div>STEAM EXCHANGE RATE CONVERTER</div>
   <a href="https://github.com/somespecialone/sert" target="_blank" rel="noreferrer"
      data-animation='{gitHubAnimation ? "" : null}'>
-    <!--		<GithubIco />-->
     <div class="GithubIco"></div>
   </a>
 </header>
@@ -85,8 +87,6 @@
     justify-content: center;
     align-items: center;
 
-    background: var(--bg-second);
-
     font-size: 1.55rem;
     font-weight: 300;
 
@@ -98,6 +98,8 @@
   header {
     position: relative;
     top: 0;
+
+    background: var(--bg-second);
 
     a {
       position: absolute;
@@ -139,6 +141,8 @@
 
   footer {
     bottom: 0;
+
+    background-color: black;
 
     .By a {
       color: var(--accent-second);
