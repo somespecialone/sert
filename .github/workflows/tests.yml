@@ -6,11 +6,11 @@ on:
     paths: [ "backend/src", "backend/tests", "backend/package.json" ]
 
 jobs:
-  main:
+  test_back:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./backend
+        working-directory: backend
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -19,7 +19,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "pnpm"
+          cache: pnpm
+          cache-dependency-path: "backend/pnpm-lock.yaml"
       - run: pnpm install
 
       - name: "Run Jest tests with coverage"
