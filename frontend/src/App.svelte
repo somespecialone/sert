@@ -55,7 +55,8 @@
   <RatesCharts {history} />
 </main>
 <footer>
-  <div class="By">— BY <a href="https://somespecial.one" target="_blank" rel="noreferrer">SOMESPECIAL.ONE</a> —</div>
+  <div class="By">— BY <a href="https://somespecial.one" target="_blank" rel="noreferrer">SOMESPECIAL.ONE</a> WITH 💛 —
+  </div>
 </footer>
 
 <style lang="scss">
@@ -173,14 +174,19 @@
 
     :global(.RatesCharts), :global(.Converter) {
       width: 70%;
+    }
+  }
 
-      @media screen and (max-width: 768px) {
-        & {
-          width: 100%;
-          border-radius: 0 !important;
+  @media screen and (max-width: 768px) {
+    main :global(.RatesCharts), main :global(.Converter) {
+      width: 100%;
+      border-radius: 0 !important;
+    }
+  }
 
-        }
-      }
+  @media screen and (max-width: 320px) {
+    header, footer {
+      font-size: 1.4rem;
     }
   }
 
