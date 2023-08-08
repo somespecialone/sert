@@ -15,7 +15,7 @@
 		"@vite-pwa/sveltekit": "^0.2.5",
 		"chart.js": "^4.3.3",
 		"chartjs-plugin-datalabels": "^2.2.0",
-		"deta": "^1.1.0",
+		"deta": "^1.2.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
