@@ -9,7 +9,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/somespecialone/sert/badge)](https://www.codefactor.io/repository/github/somespecialone/sert)
 ---
 
-[![Install on Space](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/r/yuquaungeph2key6)
+[![Install on Space](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/r/8vmyujugt4s3617u)
 
 ---
 

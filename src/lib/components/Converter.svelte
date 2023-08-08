@@ -16,6 +16,7 @@
 	}
 
 	$: updateValues(rates);
+	$: rates.USD = [1, 0];
 
 	function handleChange(key: string, value: number) {
 		const usdValue = myRound(value * (1 / rates[key][0]));
