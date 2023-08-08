@@ -1,0 +1,15 @@
+:root {
+  --br: 0.35rem;
+  --pd: 1.5rem;
+
+  /* steam colors */
+  --bg: #1b2838;
+  --bg-second: #171A21;
+  --bg-third: rgba(0, 0, 0, 0.2);;
+  --text: #b8b6b4;
+  --text-active: #fff;
+  --accent: #66C0F4;
+  --accent-second: #C6D4DF;
+
+  --orange-base: #ff3e00
+}

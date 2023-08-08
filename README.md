@@ -9,21 +9,11 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/somespecialone/sert/badge)](https://www.codefactor.io/repository/github/somespecialone/sert)
 ---
 
-[![Install on Space](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/r/d3prpujpccplt9xg)
+[![Install on Space](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/r/yuquaungeph2key6)
 
 ---
 
 > **Try web converter [sert.somespecial.one](https://sert.somespecial.one) 🧮**
-
-## Navigation 🧭
-
-- [**How it works**](#how-it-works)
-- [**API**](#api)
-  - [Rates](#rates)
-  - [History](#history)
-- [**Space 🚀🌌**](#space-)
-- [**Tests 🧪**](#tests-)
-- [**TODO 📑**](#todo-)
 
 ## How it works
 
@@ -41,17 +31,17 @@ and if true, [do next](./backend/src/cron/main.cron.js):
 All routes under `/api` path.
 All currency rates eval to 1 USD 💵.
 
+All routes have `X-Expired-At` ⌛ header for caching purposes.
+
 ### Rates
 
-> GET https://sert.somespecial.one/api/rates
+> GET `/api/rates`
 
 ```json5
 {
   "EUR": [
-    0.91,
-    // rate
-    1683121141
-    // updated ts in seconds
+    0.91, // rate
+    1683121141 // updated ts in seconds
   ],
   "UAH": [
     36.71,
@@ -62,7 +52,7 @@ All currency rates eval to 1 USD 💵.
 
 ### History
 
-> GET https://sert.somespecial.one/api/history
+> GET `/api/history`
 
 ```json5
 {
@@ -75,7 +65,7 @@ All currency rates eval to 1 USD 💵.
       0.91,
       1682986141
     ],
-    ...
+    // ...
   ],
   "UAH": [
     [
@@ -86,7 +76,7 @@ All currency rates eval to 1 USD 💵.
       36.94,
       1682986141
     ],
-    ...
+    // ...
   ]
 }
 ```
@@ -112,14 +102,7 @@ Which means that this item will not walk from one market page to another.
 
 > ❗ Tip: place your cheaper item on market with overprice big enough for last market page
 
-Env variables listed in [Spacefile](./Spacefile):
-
-* `LISTING_ID` - just listing id of your item.
-* `ITEM_MARKET_NAME` - item market hash name.
-* `LISTING_FILTER_PARAM` - search listing query on item market page. Optional.
-* `LISTING_START_PARAM` - listing count offset. Optional.
-* `CURRENCIES_TO_FETCH` - [currencies](./backend/src/constants.js) list separated by `,`.
-* `STEAM_GAME_ID` - `Steam` game/app id of item game. Default is CSGO (730).
+All env variables listed in [Spacefile](./Spacefile)
 
 ## Tests 🧪
 
@@ -128,7 +111,3 @@ Copy repo, install deps, place filled `.env` in `backend` dir and there run npm 
 ```shell
 npm run test
 ```
-
-## TODO 📑
-
-* [ ] Test cron handler.
