@@ -82,7 +82,10 @@ export async function updateCurrencyRates(db: Base): Promise<DbEntry[]> {
 		if (resp.ok) {
 			const resJson: Record<string, Record<string, ListingData>> = await resp.json();
 			const listingData = resJson['listinginfo'][LISTING_ID];
-			if (!Object.entries(listingData).length) continue;
+			if (!listingData || !Object.entries(listingData).length) {
+				console.error(`Can't find listing info for ${currencyName}!`);
+				continue;
+			}
 
 			// UTC ts in seconds
 			const updated = Math.round(nowUTC.getTime() / 1000);
