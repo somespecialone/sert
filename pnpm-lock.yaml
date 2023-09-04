@@ -27,8 +27,8 @@ devDependencies:
     specifier: ^2.2.0
     version: 2.2.0(chart.js@4.3.3)
   deta:
-    specifier: ^1.1.0
-    version: 1.1.0
+    specifier: ^2.0.0
+    version: 2.0.0
   eslint:
     specifier: ^8.28.0
     version: 8.43.0
@@ -2381,8 +2381,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /deta@1.1.0:
-    resolution: {integrity: sha512-mQAvfAsB++McPMT3Gb39KWkxfFzaPSF+z8XNpomakkUslg9xTu6Z8gVjAXaDGJm0LFEIIZQdokpU+lOJOXtOqw==}
+  /deta@2.0.0:
+    resolution: {integrity: sha512-ve+WITlmfT5nJhhdPkUWRHL3x1x9J5mZouIS0zfYR9N/WXYVWdX8muBpFVS5L0Jwxmsvgnbe4I7e1aOrrjIctg==}
     dependencies:
       node-fetch: 2.6.12
     transitivePeerDependencies:
