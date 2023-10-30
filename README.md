@@ -1,4 +1,4 @@
-# <p align="center">Steam Exchange Rate Tracker</p>
+# Steam Exchange Rate Tracker
 
 [![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
 [![license](https://img.shields.io/github/license/somespecialone/sert)](https://github.com/somespecialone/sert/blob/master/LICENSE)
@@ -9,22 +9,28 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/somespecialone/sert/badge)](https://www.codefactor.io/repository/github/somespecialone/sert)
 ---
 
-[![Install on Space](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/r/8vmyujugt4s3617u)
+[//]: # ([![Install on Space]&#40;https://deta.space/buttons/dark.svg&#41;]&#40;https://deta.space/discovery/r/8vmyujugt4s3617u&#41;)
 
----
+## ⚠️⚡ Scheduled migration!
+Converter has been moved to [converter.somespecial.one](https://converter.somespecial.one).
+Address of the API will have the same [origin](https://sert.somespecial.one) but all endpoints will be moved from
+`/api/` to `/` (root) path AFTER application is migrated. Legacy routes will be available for backwards support for
+some time.
 
-> **Try web converter [sert.somespecial.one](https://sert.somespecial.one) 🧮**
+> **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
+
+> **API [sert.somespecial.one](https://sert.somespecial.one)**
 
 ## How it works
 
 Every hour on [9 and 39 minute](./Spacefile) app checks if rates data in db is expired (updated yesterday or even older)
-and if true, [do next](./backend/src/cron/main.cron.js):
+and if true, [update currency rates](./src/lib/server/cron.ts):
 
 1. Get data of specified item on steammarket for each needed currency.
 2. Calculate exchange rates by comparing item price in previously fetched currencies.
 3. Save data to db 😎.
 
-> ⚠️ Possible to get max 4 currencies for each schedule wake up due to `Steam` rate limit.
+> ⚠️ It is possible to get max 4 currencies for each schedule wake up due to `Steam` rate limit.
 
 ## API
 
@@ -93,21 +99,30 @@ Examples:
 
 > ⚠️ `Deta micro` have response size limit, so with `all` data can exceed this which leads to error.
 
-## Space 🚀🌌
+[//]: # (## Space 🚀🌌)
 
-If you want other currencies just install this app on your `Deta space` with button above.
+[//]: # ()
+[//]: # (If you want other currencies just install this app on your `Deta space` with button above.)
 
-You need "stable" ❗ item listing on steammarket (preferable your own item).
-Which means that this item will not walk from one market page to another.
+[//]: # ()
+[//]: # (You need "stable" ❗ item listing on steammarket &#40;preferable your own item&#41;.)
 
-> ❗ Tip: place your cheaper item on market with overprice big enough for last market page
+[//]: # (Which means that this item will not walk from one market page to another.)
 
-All env variables listed in [Spacefile](./Spacefile)
+[//]: # ()
+[//]: # (> ❗ Tip: place your cheaper item on market with overprice big enough for last market page)
 
-## Tests 🧪
+[//]: # ()
+[//]: # (All env variables listed in [Spacefile]&#40;./Spacefile&#41;)
 
-Copy repo, install deps, place filled `.env` in `backend` dir and there run npm script:
+[//]: # (## Tests 🧪)
 
-```shell
-npm run test
-```
+[//]: # ()
+[//]: # (Copy repo, install deps, place filled `.env` in `backend` dir and there run npm script:)
+
+[//]: # ()
+[//]: # (```shell)
+
+[//]: # (npm run test)
+
+[//]: # (```)

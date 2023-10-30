@@ -44,6 +44,12 @@
 		<a href="https://github.com/somespecialone/sert" target="_blank" rel="noreferrer" class:animation>
 			<div class="gh-ico" />
 		</a>
+		<div class="announce">
+			Scheduled migration: This application has been moved to
+			<a href="https://converter.somespecial.one">converter.somespecial.one</a>
+			and will be removed from the current address in the near future. Consider changing your bookmark link to the new one.
+			If you are an API user read more <a href="https://github.com/somespecialone/sert#-scheduled-migration">here</a>.
+		</div>
 	</header>
 
 	<main>
@@ -59,10 +65,8 @@
 
 <style lang="scss">
 	#app {
-		position: fixed;
-
 		width: 100%;
-		height: 100%;
+		min-height: 100vh;
 
 		display: flex;
 		flex-direction: column;
@@ -72,9 +76,11 @@
 
 		color: var(--text);
 
-		::selection {
+		:global(::selection) {
+			// steam style
 			background: var(--accent);
-			color: var(--bg-second);
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6666666667);
+			color: white;
 		}
 
 		header,
@@ -98,6 +104,8 @@
 		header {
 			position: relative;
 			top: 0;
+
+			margin-bottom: 2.5rem;
 
 			background: var(--bg-second);
 
@@ -137,6 +145,34 @@
 				height: var(--shadow-height);
 				bottom: calc(-1 * var(--shadow-height));
 				background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 30%, transparent 100%);
+			}
+
+			.announce {
+				position: absolute;
+				top: 100%;
+				margin: 0 0 auto 0;
+
+				width: 100%;
+
+				padding: 0.5rem 1rem;
+
+				background: #d32942;
+				color: var(--text-active);
+				font-size: 1rem;
+				font-weight: 500;
+
+				a {
+					position: static;
+
+					color: var(--accent-second);
+
+					&:hover {
+						color: var(--accent);
+						text-decoration-line: underline;
+						text-decoration-thickness: 1px;
+						text-underline-offset: 0.3rem;
+					}
+				}
 			}
 		}
 
