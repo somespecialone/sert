@@ -1,0 +1,30 @@
+name: Test
+
+on:
+  push:
+    branches: [ master, v3 ]
+    paths: [ "api/**" ]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - run: pnpm install
+
+      - name: Run tests with coverage
+        env:
+          DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
+        run: pnpm api:coverage
+
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: api/coverage

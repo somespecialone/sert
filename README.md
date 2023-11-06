@@ -1,10 +1,12 @@
 # Steam Exchange Rate Tracker
 
+*Stay updated on Steam market prices and convert currencies with easy!*
+
 [![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
 [![license](https://img.shields.io/github/license/somespecialone/sert)](https://github.com/somespecialone/sert/blob/master/LICENSE)
 [![steam](https://shields.io/badge/steam-1b2838?logo=steam)](https://store.steampowered.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
-[![Tests](https://github.com/somespecialone/sert/actions/workflows/tests.yml/badge.svg)](https://github.com/somespecialone/sert/actions/workflows/tests.yml)
+[![Test](https://github.com/somespecialone/sert/actions/workflows/api-test.yml/badge.svg)](https://github.com/somespecialone/sert/actions/workflows/api-test.yml)
 [![codecov](https://codecov.io/gh/somespecialone/sert/branch/master/graph/badge.svg?token=GM6IQU4U2K)](https://codecov.io/gh/somespecialone/sert)
 [![CodeFactor](https://www.codefactor.io/repository/github/somespecialone/sert/badge)](https://www.codefactor.io/repository/github/somespecialone/sert)
 ---
@@ -14,8 +16,8 @@
 ## ⚠️⚡ Scheduled migration!
 Converter has been moved to [converter.somespecial.one](https://converter.somespecial.one).
 Address of the API will have the same [origin](https://sert.somespecial.one) but all endpoints will be moved from
-`/api/` to `/` (root) path AFTER application is migrated. Legacy routes will be available for backwards support for
-some time.
+`/api/` to `/` (root) path AFTER application is migrated (v3 release).
+Legacy routes will be available for backwards support for some time.
 
 > **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
 
@@ -23,8 +25,8 @@ some time.
 
 ## How it works
 
-Every hour on [9 and 39 minute](./Spacefile) app checks if rates data in db is expired (updated yesterday or even older)
-and if true, [update currency rates](./src/lib/server/cron.ts):
+Every hour on [9 and 39 minute](./deployment/Spacefile) app checks if rates data in db is expired (updated yesterday or even older)
+and if true, [update currency rates](./api/cron/index.ts):
 
 1. Get data of specified item on steammarket for each needed currency.
 2. Calculate exchange rates by comparing item price in previously fetched currencies.
@@ -115,14 +117,10 @@ Examples:
 [//]: # ()
 [//]: # (All env variables listed in [Spacefile]&#40;./Spacefile&#41;)
 
-[//]: # (## Tests 🧪)
+## Tests 🧪
 
-[//]: # ()
-[//]: # (Copy repo, install deps, place filled `.env` in `backend` dir and there run npm script:)
+Copy repo, install deps, place filled `.env` in `api` dir and there run npm script:
 
-[//]: # ()
-[//]: # (```shell)
-
-[//]: # (npm run test)
-
-[//]: # (```)
+```shell
+npm run api:test
+```

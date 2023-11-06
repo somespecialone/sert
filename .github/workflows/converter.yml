@@ -1,0 +1,45 @@
+name: Converter
+
+on:
+#  release:
+#    types: [ published ]
+
+  # TODO to remove
+  push:
+    branches: [ v3 ]
+    paths: [ "converter/**" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - run: pnpm install
+
+      - name: Build
+        run: pnpm converter:build
+
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: converter/build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

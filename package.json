@@ -1,37 +1,24 @@
 {
-	"name": "steam-exchange-rate-tracker",
-	"private": true,
-	"version": "2.0.1",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-node": "^1.2.4",
-		"@sveltejs/kit": "^1.20.4",
-		"@typescript-eslint/eslint-plugin": "^5.45.0",
-		"@typescript-eslint/parser": "^5.45.0",
-		"@vite-pwa/sveltekit": "^0.2.5",
-		"chart.js": "^4.3.3",
-		"chartjs-plugin-datalabels": "^2.2.0",
-		"deta": "^1.1.0",
-		"eslint": "^8.28.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-svelte": "^2.30.0",
-		"prettier": "^2.8.0",
-		"prettier-plugin-svelte": "^2.10.1",
-		"sass": "^1.63.6",
-		"svelte": "^4.0.0",
-		"svelte-chartjs": "^3.1.2",
-		"svelte-check": "^3.4.3",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
-		"vite": "^4.3.6",
-		"vite-plugin-pwa": "^0.16.4",
-		"workbox-build": "^7.0.0",
-		"workbox-core": "^7.0.0",
-		"workbox-window": "^7.0.0"
-	},
-	"type": "module"
+  "name": "@sert/root",
+  "version": "3.0.0",
+  "scripts": {
+    "api:dev": "pnpm --filter api dev",
+    "api:build": "pnpm --filter api build",
+    "api:preview": "pnpm --filter api preview",
+    "api:test": "pnpm --filter api test",
+    "api:coverage": "pnpm --filter api coverage",
+    "converter:dev": "pnpm --filter converter dev",
+    "converter:build": "pnpm --filter converter build",
+    "converter:preview": "pnpm --filter converter preview"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "packageManager": "pnpm@8.5.1"
 }

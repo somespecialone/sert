@@ -1,0 +1,47 @@
+html {
+	font-size: 9px;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: unset;
+}
+
+/* https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+/* media */
+@media (width > 355px) {
+	html {
+		font-size: 12px;
+	}
+}
+
+@media (width > 900px) {
+	html {
+		font-size: 16px;
+	}
+}

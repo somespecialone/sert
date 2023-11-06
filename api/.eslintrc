@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "space-before-function-paren": "off",
+    "arrow-parens": "off",
+    "no-console": "off",
+    "dot-notation": "off"
+  }
+}

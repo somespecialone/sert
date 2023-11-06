@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='icon' href='%sveltekit.assets%/favicon.svg' />
+  <link rel='apple-touch-icon' href='%sveltekit.assets%/pwa-192x192.png'>
+  <link rel='mask-icon' href='%sveltekit.assets%/favicon.svg' color='#171A21'>
+  <meta name='msapplication-TileColor' content='#171A21'>
+  <meta name='theme-color' content='#171A21'>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap' rel='stylesheet'>
+  <title>Steam Exchange Rate Converter</title>
+  <meta name='description'
+        content='Steam Currency Rate Tracker and Converter. Stay updated on Steam market prices and convert currencies with easy!' />
+  %sveltekit.head%
+</head>
+<body>
+<script>
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
+  const lastPreferredLight = localStorage.getItem('last-preferred-light') === 'true'
+  const theme = prefersLight !== lastPreferredLight ? (prefersLight ? 'light' : 'dark') : localStorage.getItem('theme')
+  localStorage.setItem('theme', theme)
+  document.body.setAttribute('data-theme', theme)
+  localStorage.setItem('last-preferred-light', String(prefersLight))
+</script>
+<div style='display: contents'>%sveltekit.body%</div>
+</body>
+</html>

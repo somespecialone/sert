@@ -1,0 +1,25 @@
+:root {
+	--br: 0.35rem;
+	--pd: 1.5rem;
+
+	/* steam colors */
+	--bg: #1b2838;
+	--bg-second: #171a21;
+	--bg-third: rgba(0, 0, 0, 0.2);
+	--foter-bg: #000;
+	--text: #b8b6b4;
+	--text-active: #fff;
+	--accent: #66c0f4;
+	--accent-second: #c6d4df;
+
+	--orange-base: #ff3e00;
+}
+
+[data-theme='light'] {
+	--bg: #f2f4fa;
+	--bg-second: #7c87a1;
+	--bg-third: #171a21;
+	--text: #fff;
+	--text-active: #fff;
+	--foter-bg: #1b2838;
+}

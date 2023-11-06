@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  release:
+    types: [ published ]
+
+env:
+  NITRO_PRESET: node-server
+  NITRO_DETA_PROJECT_KEY: empty_key_just_for_build
+  DETA_PROJECT_ID: a0ps2fNmZLMr
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: deta-space
+      url: https://sert.somespecial.one
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16  # deta node version
+          cache: pnpm
+      - run: pnpm install
+
+      - name: Build
+        run: pnpm api:build
+
+      - name: Copy deployment files to root
+        run: cp deployment/.spaceignore deployment/Spacefile deployment/Discovery.md .
+
+      - name: Deploy to Deta Space
+        uses: neobrains/space-deployment-github-action@v0.5
+        with:
+          access_token: ${{ secrets.DETA_ACCESS_TOKEN }}
+          project_id: ${{ env.DETA_PROJECT_ID }}
+          space_push: true
+#         https://github.com/deta/space-cli/issues/160
+#          space_release: true
+#          release_version: ${{ github.ref_name }}
