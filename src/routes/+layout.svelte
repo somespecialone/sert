@@ -48,7 +48,8 @@
 			Scheduled migration: This application has been moved to
 			<a href="https://converter.somespecial.one">converter.somespecial.one</a>
 			and will be removed from the current address in the near future. Consider changing your bookmark link to the new one.
-			If you are an API user read more <a href="https://github.com/somespecialone/sert#-scheduled-migration">here</a>.
+			If you are an API user read more
+			<a href="https://github.com/somespecialone/sert#%EF%B8%8F-scheduled-migration">here</a>.
 		</div>
 	</header>
 

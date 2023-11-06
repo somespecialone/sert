@@ -9,6 +9,7 @@ export default defineConfig({
 		sveltekit(),
 		SvelteKitPWA({
 			registerType: 'autoUpdate',
+			selfDestroying: true,
 			workbox: {
 				navigateFallbackDenylist: [/^\/api/],
 				runtimeCaching: [
