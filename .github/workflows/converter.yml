@@ -9,6 +9,9 @@ on:
     branches: [ v3 ]
     paths: [ "converter/**" ]
 
+env:
+  PUBLIC_API_BASE_URL: https://sert.somespecial.one
+
 jobs:
   build:
     runs-on: ubuntu-latest

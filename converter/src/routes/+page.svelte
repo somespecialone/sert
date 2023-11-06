@@ -12,10 +12,8 @@
 	let history: Record<string, number[][]> = {};
 	let rates: Record<string, number[]> = {};
 
-	const baseUrl = PUBLIC_API_BASE_URL || 'https://sert.somespecial.one/api'; // legacy api route
-
 	onMount(async () => {
-		const res = await fetch(`${baseUrl}/history`);
+		const res = await fetch(`${PUBLIC_API_BASE_URL}/api/history`); // legacy api route
 		history = await res.json();
 		Object.entries(history).forEach(([k, [[rate, ts]]]) => {
 			// generate color if there is not

@@ -6,7 +6,9 @@
 [![license](https://img.shields.io/github/license/somespecialone/sert)](https://github.com/somespecialone/sert/blob/master/LICENSE)
 [![steam](https://shields.io/badge/steam-1b2838?logo=steam)](https://store.steampowered.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
-[![Test](https://github.com/somespecialone/sert/actions/workflows/api-test.yml/badge.svg)](https://github.com/somespecialone/sert/actions/workflows/api-test.yml)
+[![API](https://github.com/somespecialone/sert/actions/workflows/api.yml/badge.svg)](https://github.com/somespecialone/sert/actions/workflows/api.yml)
+[![Test](https://github.com/somespecialone/sert/actions/workflows/test.yml/badge.svg)](https://github.com/somespecialone/sert/actions/workflows/test.yml)
+[![Converter](https://github.com/somespecialone/sert/actions/workflows/converter.yml/badge.svg)](https://github.com/somespecialone/sert/actions/workflows/converter.yml)
 [![codecov](https://codecov.io/gh/somespecialone/sert/branch/master/graph/badge.svg?token=GM6IQU4U2K)](https://codecov.io/gh/somespecialone/sert)
 [![CodeFactor](https://www.codefactor.io/repository/github/somespecialone/sert/badge)](https://www.codefactor.io/repository/github/somespecialone/sert)
 ---
