@@ -12,19 +12,11 @@
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
   <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap' rel='stylesheet'>
   <title>Steam Exchange Rate Converter</title>
-  <meta name='description'
-        content='Steam Currency Rate Tracker and Converter. Stay updated on Steam market prices and convert currencies with easy!' />
+  <meta name='description' content='Steam Currency Rate Tracker and Converter. Stay updated on Steam market prices and convert currencies with easy!' />
   %sveltekit.head%
 </head>
 <body>
-<script>
-  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
-  const lastPreferredLight = localStorage.getItem('last-preferred-light') === 'true'
-  const theme = prefersLight !== lastPreferredLight ? (prefersLight ? 'light' : 'dark') : localStorage.getItem('theme')
-  localStorage.setItem('theme', theme)
-  document.body.setAttribute('data-theme', theme)
-  localStorage.setItem('last-preferred-light', String(prefersLight))
-</script>
+<script>const e=window.matchMedia("(prefers-color-scheme: light)").matches,t=e!==("true"===localStorage.getItem("last-preferred-light"))?e?"light":"dark":localStorage.getItem("theme");localStorage.setItem("theme",t),document.body.setAttribute("data-theme",t),localStorage.setItem("last-preferred-light",String(e));</script>
 <div style='display: contents'>%sveltekit.body%</div>
 </body>
 </html>

@@ -13,6 +13,5 @@ export default eventHandler((event) => {
     now.setTime(roundedToHour + 1000 * 60 * CRON_MINUTES[0]) // + nearest minutes
   }
 
-  const Expired = now.toUTCString()
-  setResponseHeaders(event, { 'X-Expired-At': Expired, Expired })
+  setResponseHeaders(event, { Expires: now.toUTCString() })
 })

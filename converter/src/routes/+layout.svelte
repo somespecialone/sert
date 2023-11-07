@@ -1,25 +1,15 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { pwaInfo } from 'virtual:pwa-info';
 
 	import '$lib/assets/main.css';
 	import '$lib/assets/variables.css';
 
-	import { getRandomArbitrary } from '$lib/utils';
-
 	import ThemeBtn from '$lib/components/ThemeBtn.svelte';
-
-	let timeout: ReturnType<typeof setTimeout>;
-	let animation = false;
-
-	function animationWatcher(state: boolean) {
-		timeout = setTimeout(() => (animation = !animation), state ? 501 : getRandomArbitrary(21e3, 36e3));
-	}
-
-	$: animationWatcher(animation);
+	import GhRepoBtn from '$lib/components/GhRepoBtn.svelte';
 
 	// sw
-	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+	$: webManifest = pwaInfo?.webManifest.linkTag || '';
 	onMount(async () => {
 		if (pwaInfo) {
 			const { registerSW } = await import('virtual:pwa-register');
@@ -31,9 +21,6 @@
 			});
 		}
 	});
-
-	onMount(() => animationWatcher(animation));
-	onDestroy(() => clearTimeout(timeout));
 </script>
 
 <svelte:head>
@@ -44,9 +31,7 @@
 	<header>
 		<ThemeBtn />
 		<div>STEAM EXCHANGE RATE CONVERTER</div>
-		<a href="https://github.com/somespecialone/sert" target="_blank" rel="noreferrer" class:animation>
-			<div class="gh-ico" />
-		</a>
+		<GhRepoBtn />
 	</header>
 
 	<main>
@@ -111,33 +96,9 @@
 				left: 1rem;
 			}
 
-			a {
+			:global(.gh-repo-btn) {
 				position: absolute;
 				right: 1rem;
-
-				&.animation {
-					animation: quick 0.25s infinite reverse;
-				}
-
-				$s: rgba(0, 167, 255, 1);
-				$w: rgba(235, 255, 0, 1);
-
-				$d: 12%;
-				$sd: darken($s, $d);
-				$wd: darken($w, $d);
-
-				&:hover :global(.gh-ico) {
-					background: linear-gradient(180deg, $sd 0%, $sd 49%, $wd 50%, $wd 100%);
-				}
-
-				:global(.gh-ico) {
-					width: 2rem;
-					height: 2rem;
-
-					background: linear-gradient(180deg, $s 0%, $s 49%, $w 50%, $w 100%);
-					mask-image: url('/github.svg');
-					-webkit-mask-image: url('/github.svg');
-				}
 			}
 
 			&:after {
@@ -208,15 +169,6 @@
 			footer {
 				font-size: 1.4rem;
 			}
-		}
-	}
-
-	@keyframes quick {
-		25% {
-			transform: rotate(-15deg);
-		}
-		75% {
-			transform: rotate(15deg);
 		}
 	}
 </style>

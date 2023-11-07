@@ -2,7 +2,7 @@
 export default eventHandler((event) => {
   const config = useRuntimeConfig(event)
 
-  setResponseHeaders(event, { 'Access-Control-Allow-Origin': config.allowOrigin })
+  event.headers.get('Origin') && setResponseHeaders(event, { 'Access-Control-Allow-Origin': config.allowOrigin })
 
   if (event.method === 'OPTIONS') {
     setResponseHeaders(event, {

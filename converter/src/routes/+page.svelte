@@ -4,10 +4,10 @@
 	import { getRandomColor } from '$lib/utils';
 	import { COLORS } from '$lib/constants';
 
-	import { PUBLIC_API_BASE_URL } from '$env/static/public';
-
 	import Converter from '$lib/components/Converter.svelte';
 	import RatesCharts from '$lib/components/RatesCharts.svelte';
+
+	import { PUBLIC_API_BASE_URL } from '$env/static/public';
 
 	let history: Record<string, number[][]> = {};
 	let rates: Record<string, number[]> = {};

@@ -1,8 +1,8 @@
 name: Converter
 
 on:
-#  release:
-#    types: [ published ]
+  release:
+    types: [ published ]
 
   # TODO to remove
   push:

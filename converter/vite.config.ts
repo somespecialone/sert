@@ -2,23 +2,12 @@ import { defineConfig } from 'vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 
-import { MyExpPlugin } from './config/workbox';
-
 export default defineConfig({
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
+			injectRegister: false,
 			registerType: 'autoUpdate',
-			workbox: {
-				navigateFallbackDenylist: [/^\/api/],
-				runtimeCaching: [
-					{
-						urlPattern: ({ url }) => url.pathname.startsWith('/api'),
-						handler: 'CacheFirst',
-						options: { cacheName: 'api-cache', plugins: [new MyExpPlugin()] }
-					}
-				]
-			},
 			manifest: {
 				name: 'Steam Exchange Rate Converter',
 				short_name: 'Converter',
