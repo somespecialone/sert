@@ -20,6 +20,7 @@ Converter has been moved to [converter.somespecial.one](https://converter.somesp
 Address of the API will have the same [origin](https://sert.somespecial.one) but all endpoints will be moved from
 `/api/` to `/` (root) path AFTER application is migrated (v3 release).
 Legacy routes will be available for backwards support for some time.
+`X-Expired-At` header will be replaced with `Expires` for native browser caching.
 
 > **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
 
@@ -38,10 +39,10 @@ and if true, [update currency rates](./api/cron/index.ts):
 
 ## API
 
-All routes under `/api` path.
+All routes under `/api` path. [Check future changes](#-scheduled-migration)
 All currency rates eval to 1 USD 💵.
 
-All routes have `X-Expired-At` ⌛ header for caching purposes.
+All routes have `Expires` ⌛ header for caching purposes.
 
 ### Rates
 
