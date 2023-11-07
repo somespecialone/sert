@@ -12,8 +12,7 @@ export const handle = (async ({ event, resolve }) => {
 	if (isApiRoute && event.request.method === 'OPTIONS') {
 		return new Response(null, {
 			headers: {
-				'Access-Control-Allow-Methods': 'GET, OPTIONS',
-				'Access-Control-Allow-Origin': env.ALLOW_ORIGIN || '*',
+				'Access-Control-Allow-Methods': 'GET',
 				'Access-Control-Allow-Headers': '*'
 			}
 		});
@@ -36,8 +35,11 @@ export const handle = (async ({ event, resolve }) => {
 			now.setTime(roundedToHour + 1000 * 60 * CRON_MINUTES[0]); // + nearest minutes
 		}
 
-		resp.headers.set('X-Expired-At', now.toUTCString());
-		resp.headers.set('Access-Control-Allow-Origin', env.ALLOW_ORIGIN || '*'); // CORS
+		const expires = now.toUTCString();
+		resp.headers.set('X-Expired-At', expires);
+		resp.headers.set('Expires', expires);
+
+		event.request.headers.get('Origin') && resp.headers.set('Access-Control-Allow-Origin', env.ALLOW_ORIGIN || '*'); // CORS
 	}
 
 	return resp;
