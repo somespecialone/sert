@@ -1,6 +1,5 @@
 <script lang="ts">
-	import SwitchOff from '$lib/components/icons/SwitchOff.svelte';
-	import SwitchOn from '$lib/components/icons/SwitchOn.svelte';
+	import Icon from '@iconify/svelte';
 
 	import { browser } from '$app/environment';
 
@@ -19,15 +18,11 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 <div class="theme-btn" on:click={toggleTheme}>
-	<svelte:component this={theme === 'light' ? SwitchOn : SwitchOff} />
+	<Icon icon={theme === 'light' ? 'mdi:light-switch' : 'mdi:light-switch-off'} height="2rem" />
 </div>
 
 <style lang="scss">
 	.theme-btn {
 		cursor: pointer;
-
-		:global(svg) {
-			height: 2rem;
-		}
 	}
 </style>

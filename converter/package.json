@@ -7,6 +7,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
+		"@iconify/svelte": "^3.1.4",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.27.2",
 		"@vite-pwa/sveltekit": "^0.2.7",

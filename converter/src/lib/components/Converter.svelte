@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { tick } from 'svelte';
+
 	import { myRound, rateIsExpired } from '$lib/utils';
 	import { COLORS } from '$lib/constants';
 
-	import ExpiredIco from '$lib/components/icons/ExpiredIco.svelte';
+	import Icon from '@iconify/svelte';
 
 	type TRates = Record<string, number[]>;
 
@@ -46,7 +47,7 @@
 				on:focusout={() => (focusedCurrency = '')}
 			/>
 			{#if currency !== 'USD' && rateIsExpired(rates[currency][1])}
-				<ExpiredIco />
+				<Icon icon="mdi:clock-alert-outline" width="2rem" />
 			{/if}
 		</div>
 	{/each}
@@ -112,13 +113,12 @@
 				color: var(--accent-second);
 			}
 
-			:global(svg) {
+			svg {
 				position: absolute;
 				left: 101%;
 				top: 50%;
 				transform: translateY(-50%);
 
-				width: 2rem;
 				color: var(--orange-base);
 			}
 		}

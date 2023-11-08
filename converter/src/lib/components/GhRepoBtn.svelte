@@ -41,8 +41,11 @@
 			height: 2rem;
 
 			background: linear-gradient(180deg, $s 0%, $s 49%, $w 50%, $w 100%);
-			mask-image: url('/github.svg');
-			-webkit-mask-image: url('/github.svg');
+
+			$url: 'https://api.iconify.design/bi:github.svg?height=none';
+
+			mask-image: url($url);
+			-webkit-mask-image: url($url);
 		}
 	}
 

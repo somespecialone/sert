@@ -53,6 +53,9 @@ importers:
 
   converter:
     devDependencies:
+      '@iconify/svelte':
+        specifier: ^3.1.4
+        version: 3.1.4(svelte@4.2.2)
       '@sveltejs/adapter-static':
         specifier: ^2.0.3
         version: 2.0.3(@sveltejs/kit@1.27.2)
@@ -1751,6 +1754,19 @@ packages:
 
   /@humanwhocodes/object-schema@2.0.1:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
+    dev: true
+
+  /@iconify/svelte@3.1.4(svelte@4.2.2):
+    resolution: {integrity: sha512-YDwQlN46ka8KPRayDb7TivmkAPizfTXi6BSRNqa1IV0+byA907n8JcgQafA7FD//pW5XCuuAhVx6uRbKTo+CfA==}
+    peerDependencies:
+      svelte: '*'
+    dependencies:
+      '@iconify/types': 2.0.0
+      svelte: 4.2.2
+    dev: true
+
+  /@iconify/types@2.0.0:
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
 
   /@ioredis/commands@1.2.0:
