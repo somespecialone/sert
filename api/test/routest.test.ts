@@ -42,13 +42,15 @@ afterAll(async () => {
 
 describe('Test routes', () => {
   test('Rates route', async () => {
-    const res = await agent.get('/rates').expect(200)
+    const res = await agent.get('/rates').set('origin', 'https://example.com').expect(200)
     expect(res.headers['content-type']).toMatch(/json/)
+    expect(res.headers['access-control-allow-origin']).toEqual(process.env.NITRO_ALLOW_ORIGIN || '*')
     expect(res.body[MOCK_CURRENCY]).toEqual(MOCK_CURRENCY_HISTORY[0])
   })
   test('History route', async () => {
-    const res = await agent.get('/history').expect(200)
+    const res = await agent.get('/history').set('origin', 'https://example.com').expect(200)
     expect(res.headers['content-type']).toMatch(/json/)
+    expect(res.headers['access-control-allow-origin']).toEqual(process.env.NITRO_ALLOW_ORIGIN || '*')
     expect(res.body[MOCK_CURRENCY]).toEqual(MOCK_CURRENCY_HISTORY.slice(0, Number(process.env.HISTORY_LENGTH || 30)))
   })
   test('History route with length', async () => {

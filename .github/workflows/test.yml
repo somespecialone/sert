@@ -21,7 +21,9 @@ jobs:
       - name: Run tests with coverage
         env:
           DETA_PROJECT_KEY: ${{ secrets.DETA_PROJECT_KEY }}
-        run: pnpm api:coverage
+        run: |
+          rm -rf api/.output
+          pnpm api:coverage
 
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v3

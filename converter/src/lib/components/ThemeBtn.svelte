@@ -11,6 +11,9 @@
 		theme = theme === 'dark' ? 'light' : 'dark';
 		localStorage.setItem('theme', theme);
 		document.body.setAttribute('data-theme', theme);
+		document.head
+			.querySelector('meta[name="theme-color"]')!
+			.setAttribute('content', theme === 'dark' ? '#171A21' : '#7c87a1');
 	}
 </script>
 

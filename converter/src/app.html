@@ -16,7 +16,7 @@
   %sveltekit.head%
 </head>
 <body>
-<script>const e=window.matchMedia("(prefers-color-scheme: light)").matches,t=e!==("true"===localStorage.getItem("last-preferred-light"))?e?"light":"dark":localStorage.getItem("theme");localStorage.setItem("theme",t),document.body.setAttribute("data-theme",t),localStorage.setItem("last-preferred-light",String(e));</script>
+<script>const e=window.matchMedia("(prefers-color-scheme: light)").matches,t=e!==("true"===localStorage.getItem("last-preferred-light"))?e?"light":"dark":localStorage.getItem("theme");localStorage.setItem("theme",t),document.body.setAttribute("data-theme",t),localStorage.setItem("last-preferred-light",String(e)),document.head.querySelector("meta[name='theme-color']").setAttribute("content",t==="dark"?'#171A21':'#7c87a1');</script>
 <div style='display: contents'>%sveltekit.body%</div>
 </body>
 </html>
