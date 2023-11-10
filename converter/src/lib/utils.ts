@@ -1,4 +1,4 @@
-export { myRound } from '../../../utils';
+export { myRound, rateIsExpired } from '../../../utils';
 
 /**
  * Get random number between margins.
@@ -19,8 +19,4 @@ export function* getRandomColor() {
 		}
 		yield color;
 	}
-}
-
-export function rateIsExpired(ts: number): boolean {
-	return new Date(ts * 1000).toDateString() !== new Date().toDateString();
 }

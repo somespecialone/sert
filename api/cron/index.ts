@@ -40,12 +40,10 @@ export async function updateCurrencyRates(event: H3Event): Promise<DbEntry[]> {
     return resObj
   }, {})
 
-  const nowLocal = new Date()
-  const nowUTC = new Date(nowLocal.getTime() + nowLocal.getTimezoneOffset() * 60 * 1000)
   // @ts-ignore
   const toOmit: [keyof typeof CURRENCIES] = querySetItems.reduce((resArr, { key, updated }) => {
     if (key.startsWith(RATES_PREFIX)) {
-      if (new Date(updated * 1000).toDateString() === nowUTC.toDateString()) {
+      if (!rateIsExpired(updated)) {
         resArr.push(key.split(RATES_PREFIX)[1] as never) // omit
       }
     }
@@ -84,7 +82,7 @@ export async function updateCurrencyRates(event: H3Event): Promise<DbEntry[]> {
       }
 
       // UTC ts in seconds
-      const updated = Math.round(nowUTC.getTime() / 1000)
+      const updated = Math.round(getUTCDate().getTime() / 1000)
 
       if (currencyId === 1) {
         originalToUSDRate = myRound(listingData['price'] / listingData['converted_price'])

@@ -1,4 +1,4 @@
-export { myRound } from '../../utils'
+export { myRound, rateIsExpired, getUTCDate } from '../../utils'
 
 /**
  * Make new array with chunks.

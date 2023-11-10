@@ -113,7 +113,7 @@
 				color: var(--accent-second);
 			}
 
-			svg {
+			:global(svg) {
 				position: absolute;
 				left: 101%;
 				top: 50%;
