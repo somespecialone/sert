@@ -111,6 +111,14 @@ export async function updateCurrencyRates(db: Base): Promise<DbEntry[]> {
 				const historyKey = HISTORY_PREFIX + currencyName;
 				const rate = myRound((listingData['converted_price'] / listingData['price']) * originalToUSDRate);
 				const history = historyKey in histories ? chunkArray(histories[historyKey], HISTORY_SIZE)[0] : [];
+
+				// check if steam give me corrupt converted price.
+				// It is highly unlikely that rate drop more than 10x times in one day
+				if (history[0][0] / rate > 10) {
+					console.warn(`Received inconsistent data. ${currencyName}: ${history[0][0]} -> ${rate}`);
+					continue;
+				}
+
 				history.unshift([rate, updated]);
 
 				items.push({ key: ratesKey, updated, rate });
