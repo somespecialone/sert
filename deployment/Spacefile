@@ -12,11 +12,11 @@ micros:
       - "/"
       - "/rates"
       - "/history"
-#    actions:
-#      - id: update-rates
-#        name: Update rates
-#        trigger: schedule
-#        default_interval: 9,39 * * * ?
+    actions:
+      - id: update-rates
+        name: Update rates
+        trigger: schedule
+        default_interval: 9,39 * * * ?
     presets:
       env:
         - name: NITRO_LISTING_ID
