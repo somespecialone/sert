@@ -12,6 +12,7 @@ micros:
       - "/"
       - "/rates"
       - "/history"
+      - "/api/*"
     actions:
       - id: update-rates
         name: Update rates

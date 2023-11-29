@@ -4,6 +4,11 @@ on:
   release:
     types: [ published ]
 
+  # TODO to remove
+  push:
+    branches: [ v3 ]
+    paths: [ "api/**" ]
+
 env:
   NITRO_PRESET: node-server
   NITRO_DETA_PROJECT_KEY: empty_key_just_for_build
@@ -15,7 +20,7 @@ jobs:
     timeout-minutes: 10
     environment:
       name: deta-space
-      url: https://sert.somespecial.one
+      url: https://sert.somespecial.one/rates
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2

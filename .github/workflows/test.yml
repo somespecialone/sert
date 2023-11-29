@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: [ master, v3 ]
+    branches: [ v3 ]
     paths: [ "api/**" ]
 
 jobs:
