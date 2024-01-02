@@ -15,16 +15,20 @@
 
 [//]: # ([![Install on Space]&#40;https://deta.space/buttons/dark.svg&#41;]&#40;https://deta.space/discovery/r/8vmyujugt4s3617u&#41;)
 
-## ⚠️⚡ Scheduled migration!
-Converter has been moved to [converter.somespecial.one](https://converter.somespecial.one).
-Address of the API will have the same [origin](https://sert.somespecial.one) but all endpoints will be moved from
-`/api/` to `/` (root) path AFTER application is migrated (v3 release).
-Legacy routes will be available for backwards support for some time.
-`X-Expired-At` header will be replaced with `Expires` for native browser caching.
+## Scheduled migration!
 
+> [!WARNING]
+> Converter has been moved to [converter.somespecial.one](https://converter.somespecial.one).
+> Address of the API will have the same [origin](https://sert.somespecial.one) but all endpoints will be moved from
+> `/api/` to `/` (root) path AFTER application is migrated (v3 release).
+> Legacy routes will be available for backwards support for some time.
+> `X-Expired-At` header will be replaced with `Expires` for native browser caching.
+
+> [!IMPORTANT]
+> 
 > **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
-
-> **API [sert.somespecial.one](https://sert.somespecial.one)**
+> 
+> **API [sert.somespecial.one](https://sert.somespecial.one/rates)**
 
 ## How it works
 
@@ -35,11 +39,13 @@ and if true, [update currency rates](./api/cron/index.ts):
 2. Calculate exchange rates by comparing item price in previously fetched currencies.
 3. Save data to db 😎.
 
-> ⚠️ It is possible to get max 4 currencies for each schedule wake up due to `Steam` rate limit.
+> [!WARNING]
+> It is possible to get max 4 currencies for each schedule wake up due to `Steam` rate limit.
 
 ## API
 
-All routes under `/api` path. [Check future changes](#-scheduled-migration)
+All routes under `/api` path.
+
 All currency rates eval to 1 USD 💵.
 
 All routes have `Expires` ⌛ header for caching purposes.
@@ -102,7 +108,8 @@ Examples:
 * https://sert.somespecial.one/api/history?length=20
 * https://sert.somespecial.one/api/history?all
 
-> ⚠️ `Deta micro` have response size limit, so with `all` data can exceed this which leads to error.
+> [!WARNING]
+> `Deta micro` have response size limit, so with `all` data can exceed this which leads to error.
 
 [//]: # (## Space 🚀🌌)
 
