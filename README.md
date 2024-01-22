@@ -15,6 +15,14 @@
 
 [//]: # ([![Install on Space]&#40;https://deta.space/buttons/dark.svg&#41;]&#40;https://deta.space/discovery/r/8vmyujugt4s3617u&#41;)
 
+> [!IMPORTANT]
+> 
+> **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
+> 
+> **API [sert.somespecial.one](https://sert.somespecial.one/rates)**
+>
+> **Python API consumer [aiosteampy.converter](https://github.com/somespecialone/aiosteampy/blob/master/aiosteampy/converter.py)**
+
 ## Scheduled migration!
 
 > [!WARNING]
@@ -23,12 +31,6 @@
 > `/api/` to `/` (root) path AFTER application is migrated (v3 release).
 > Legacy routes will be available for backwards support for some time.
 > `X-Expired-At` header will be replaced with `Expires` for native browser caching.
-
-> [!IMPORTANT]
-> 
-> **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
-> 
-> **API [sert.somespecial.one](https://sert.somespecial.one/rates)**
 
 ## How it works
 
