@@ -13,24 +13,18 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/somespecialone/sert/badge)](https://www.codefactor.io/repository/github/somespecialone/sert)
 ---
 
-[//]: # ([![Install on Space]&#40;https://deta.space/buttons/dark.svg&#41;]&#40;https://deta.space/discovery/r/8vmyujugt4s3617u&#41;)
-
 > [!IMPORTANT]
 > 
 > **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
 > 
-> **API [sert.somespecial.one](https://sert.somespecial.one/rates)**
+> **API [sert.somespecialone.workers.dev](https://sert.somespecialone.workers.dev)**
 >
 > **Python API consumer [aiosteampy.converter](https://github.com/somespecialone/aiosteampy/blob/master/aiosteampy/converter.py)**
 
 ## Scheduled migration!
 
 > [!WARNING]
-> Converter has been moved to [converter.somespecial.one](https://converter.somespecial.one).
-> Address of the API will have the same [origin](https://sert.somespecial.one) but all endpoints will be moved from
-> `/api/` to `/` (root) path AFTER application is migrated (v3 release).
-> Legacy routes will be available for backwards support for some time.
-> `X-Expired-At` header will be replaced with `Expires` for native browser caching.
+> API has been moved to [sert.somespecialone.workers.dev](https://sert.somespecialone.workers.dev) address
 
 ## How it works
 
@@ -46,15 +40,13 @@ and if true, [update currency rates](./api/cron/index.ts):
 
 ## API
 
-All routes under `/api` path.
-
 All currency rates eval to 1 USD 💵.
 
 All routes have `Expires` ⌛ header for caching purposes.
 
 ### Rates
 
-> GET `/api/rates`
+> GET `/rates`
 
 ```json5
 {
@@ -71,7 +63,7 @@ All routes have `Expires` ⌛ header for caching purposes.
 
 ### History
 
-> GET `/api/history`
+> GET `/history`
 
 ```json5
 {
@@ -107,32 +99,14 @@ All routes have `Expires` ⌛ header for caching purposes.
 
 Examples:
 
-* https://sert.somespecial.one/api/history?length=20
-* https://sert.somespecial.one/api/history?all
+* https://sert.somespecialone.workers.dev/history?length=20
+* https://sert.ssomespecialone.workers.dev/history?all
 
-> [!WARNING]
-> `Deta micro` have response size limit, so with `all` data can exceed this which leads to error.
 
-[//]: # (## Space 🚀🌌)
-
+[//]: # (## Tests 🧪)
 [//]: # ()
-[//]: # (If you want other currencies just install this app on your `Deta space` with button above.)
-
+[//]: # (Copy repo, install deps, place filled `.env` in `api` dir and there run npm script:)
 [//]: # ()
-[//]: # (You need "stable" ❗ item listing on steammarket &#40;preferable your own item&#41;.)
-
-[//]: # (Which means that this item will not walk from one market page to another.)
-
-[//]: # ()
-[//]: # (> ❗ Tip: place your cheaper item on market with overprice big enough for last market page)
-
-[//]: # ()
-[//]: # (All env variables listed in [Spacefile]&#40;./Spacefile&#41;)
-
-## Tests 🧪
-
-Copy repo, install deps, place filled `.env` in `api` dir and there run npm script:
-
-```shell
-npm run api:test
-```
+[//]: # (```shell)
+[//]: # (npm run api:test)
+[//]: # (```)

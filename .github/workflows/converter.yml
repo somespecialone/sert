@@ -2,7 +2,7 @@ name: Converter
 
 on:
   push:
-    branches: [ v3 ]
+    branches: [ main ]
     paths: [ "converter/**" ]
 
 concurrency:
