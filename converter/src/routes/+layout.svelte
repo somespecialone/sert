@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { pwaInfo } from 'virtual:pwa-info';
 
+	import Icon from '@iconify/svelte';
+
 	import '$lib/assets/main.css';
 	import '$lib/assets/variables.css';
 
@@ -39,8 +41,19 @@
 	</main>
 
 	<footer>
-		<div class="By">
-			— BY <a href="https://somespecial.one" target="_blank" rel="noreferrer">SOMESPECIAL.ONE</a> WITH 💛 —
+		<div class="made-by">
+			Made by <a href="https://somespecial.one" target="_blank" rel="noreferrer">somespecial.one</a>
+		</div>
+		—
+		<div class="made-with">
+			with
+			<a href="https://svelte.dev/" target="_blank" rel="noreferrer"><Icon icon="ri:svelte-fill" height="1.4rem" /></a>
+			<a href="https://nitro.unjs.io/" target="_blank" rel="noreferrer"><Icon icon="unjs:nitro" height="1.4rem" /></a>
+			<a href="https://www.cloudflare.com/" target="_blank" rel="noreferrer">
+				<Icon icon="devicon-plain:cloudflare" height="1.4rem" />
+			</a>
+			<a href="https://github.com/" target="_blank" rel="noreferrer"><Icon icon="mdi:github" height="1.4rem" /></a>
+			<Icon icon="mdi:heart" height="1.4rem" color="#ffce24" />
 		</div>
 	</footer>
 </div>
@@ -71,10 +84,8 @@
 			height: 4rem;
 
 			display: flex;
-			justify-content: center;
 			align-items: center;
 
-			font-size: 1.55rem;
 			font-weight: 300;
 
 			&:after,
@@ -89,7 +100,11 @@
 
 			margin-bottom: 2.5rem;
 
+			justify-content: center;
+
 			background: var(--bg-second);
+
+			font-size: 1.55rem;
 
 			:global(.theme-btn) {
 				position: absolute;
@@ -114,9 +129,13 @@
 		footer {
 			bottom: 0;
 
+			justify-content: space-between;
+
 			background-color: var(--foter-bg);
 
-			.By a {
+			font-size: 1.15rem;
+
+			a {
 				color: var(--accent-second);
 
 				&:hover {
@@ -124,6 +143,20 @@
 					text-decoration-line: underline;
 					text-decoration-thickness: 1px;
 					text-underline-offset: 0.3rem;
+				}
+			}
+
+			div {
+				padding: 0 1rem;
+			}
+
+			.made-with {
+				display: flex;
+				align-items: center;
+				gap: 0.4rem;
+
+				a {
+					height: 1.4rem;
 				}
 			}
 

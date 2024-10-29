@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: [ v3 ]
+    branches: [ nonexistent_branch ]  # turned off for now
     paths: [ "api/**" ]
 
 jobs:

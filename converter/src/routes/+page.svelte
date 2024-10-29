@@ -13,7 +13,7 @@
 	let rates: Record<string, number[]> = {};
 
 	onMount(async () => {
-		const res = await fetch(`${PUBLIC_API_BASE_URL}/api/history`); // legacy api route
+		const res = await fetch(`${PUBLIC_API_BASE_URL}/history`);
 		history = await res.json();
 		Object.entries(history).forEach(([k, [[rate, ts]]]) => {
 			// generate color if there is not

@@ -1,6 +1,3 @@
-export const RATES_PREFIX = 'rate-'
-export const HISTORY_PREFIX = 'history-'
-
 /**
  * @see https://partner.steamgames.com/doc/store/pricing/currencies
  */

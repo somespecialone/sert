@@ -16,3 +16,4 @@ vite.config.ts.timestamp-*
 .cache
 dist
 coverage
+.wrangler

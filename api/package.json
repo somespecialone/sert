@@ -9,14 +9,14 @@
     "coverage": "vitest --coverage"
   },
   "dependencies": {
-    "deta": "^2.0.0",
-    "nitropack": "^2.7.2"
+    "nitropack": "npm:nitropack-nightly@latest"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@types/supertest": "^2.0.15",
     "@vitest/coverage-v8": "^0.34.6",
     "supertest": "^6.3.3",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "wrangler": "^3.83.0"
   }
 }

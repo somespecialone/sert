@@ -20,5 +20,5 @@ declare global {
 	}
 }
 
-// don't know why types of import from `svelte` isn't work, so this fix
+// don't know why types of import from `svelte` isn't work, so this is fix
 export * from 'svelte';
