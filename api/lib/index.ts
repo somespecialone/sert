@@ -8,8 +8,8 @@ export type Options = {
   steamGameId: string
   historySize: number
 }
-export type RatesEntry = { [key in keyof typeof CURRENCIES]?: { updated: number; rate: number } }
-export type HistoryEntry = { [key in keyof typeof CURRENCIES]?: { updated: number; history: [number, number][] } }
+export type RatesEntry = { [key in keyof typeof CURRENCIES]?: [number, number] }
+export type HistoryEntry = { [key in keyof typeof CURRENCIES]?: [number, number][] }
 
 export async function updateRatesHistory(
   histories: HistoryEntry,
@@ -34,7 +34,7 @@ export async function updateRatesHistory(
 
   let originalToUSDRate = 1 // original currency rate to USD
 
-  const toOmit = Object.entries(histories).reduce((resArr, [currencyName, { updated }]) => {
+  const toOmit = Object.entries(histories).reduce((resArr, [currencyName, [[, updated]]]) => {
     if (!rateIsExpired(updated)) {
       resArr.push(currencyName) // omit
     }
@@ -83,16 +83,16 @@ export async function updateRatesHistory(
         if (originalCurrencyValues?.length && !toOmit.includes(originalCurrencyValues[1])) {
           const originalCurrencyName = originalCurrencyValues[1]
           const originalHistory =
-            originalCurrencyName in histories ? chunkArray(histories[originalCurrencyName].history, historySize)[0] : []
+            originalCurrencyName in histories ? chunkArray(histories[originalCurrencyName], historySize)[0] : []
           originalHistory.unshift([originalToUSDRate, updated])
 
-          histories[originalCurrencyName] = { updated, history: originalHistory }
+          histories[originalCurrencyName] = originalHistory
 
           toOmit.push(originalCurrencyName)
         }
       } else {
         const rate = myRound((listingData['converted_price'] / listingData['price']) * originalToUSDRate)
-        const history = currencyName in histories ? chunkArray(histories[currencyName].history, historySize)[0] : []
+        const history = currencyName in histories ? chunkArray(histories[currencyName], historySize)[0] : []
 
         // check if steam give me corrupt converted price.
         // It is highly unlikely that rate drop more than 10x times in one day
@@ -103,7 +103,7 @@ export async function updateRatesHistory(
 
         history.unshift([rate, updated])
 
-        histories[currencyName] = { updated, history }
+        histories[currencyName] = history
       }
     } else if (resp.status === 429) {
       console.warn(`Hit rate limit with ${i}s attempt!`)

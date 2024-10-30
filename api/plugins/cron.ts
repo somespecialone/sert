@@ -16,14 +16,14 @@ export default defineNitroPlugin(({ hooks }) => {
 
       // sort histories
       histories = Object.entries(histories)
-        .sort((a, b) => CURRENCIES[a[0]] - CURRENCIES[b[0]])
-        .reduce((resObj, [currencyName, { updated, history }]) => {
-          resObj[currencyName] = { updated, history }
+        .sort(([curr1], [curr2]) => CURRENCIES[curr1] - CURRENCIES[curr2])
+        .reduce((resObj, [currencyName, history]) => {
+          resObj[currencyName] = history
           return resObj
         }, {})
 
-      const rates: RatesEntry = Object.entries(histories).reduce((resObj, [currencyName, { updated, history }]) => {
-        resObj[currencyName] = { updated, rate: history[0][0] }
+      const rates: RatesEntry = Object.entries(histories).reduce((resObj, [currencyName, history]) => {
+        resObj[currencyName] = history[0]
         return resObj
       }, {})
 

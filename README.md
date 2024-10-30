@@ -13,7 +13,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/somespecialone/sert/badge)](https://www.codefactor.io/repository/github/somespecialone/sert)
 ---
 
-> [!IMPORTANT]
+> [!NOTE]
 > 
 > **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
 > 
@@ -21,7 +21,7 @@
 >
 > **Python API consumer [aiosteampy.converter](https://github.com/somespecialone/aiosteampy/blob/master/aiosteampy/converter.py)**
 
-## Scheduled migration!
+## Migration!
 
 > [!WARNING]
 > API has been moved to [sert.somespecialone.workers.dev](https://sert.somespecialone.workers.dev) address
@@ -42,7 +42,9 @@ and if true, [update currency rates](./api/cron/index.ts):
 
 All currency rates eval to 1 USD 💵.
 
-All routes have `Expires` ⌛ header for caching purposes.
+> [!IMPORTANT]
+> All routes have `Expires` ⌛ header
+> So please consider using a caching mechanism to avoid unnecessary requests to the service as its resources are limited.
 
 ### Rates
 

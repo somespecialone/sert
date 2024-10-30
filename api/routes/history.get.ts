@@ -13,8 +13,8 @@ export default defineEventHandler(async (event) => {
   if (!histories) return {}
 
   // trunk history if needed
-  Object.entries(histories).forEach(([currencyName, { history }]) => {
-    histories[currencyName].history = history.slice(0, all || all === '' ? undefined : Number(length))
+  Object.entries(histories).forEach(([currencyName, history]) => {
+    histories[currencyName] = history.slice(0, all || all === '' ? undefined : Number(length))
   })
 
   return histories
