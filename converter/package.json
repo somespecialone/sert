@@ -9,7 +9,7 @@
 	"devDependencies": {
 		"@iconify/svelte": "^3.1.4",
 		"@sveltejs/adapter-static": "^2.0.3",
-		"@sveltejs/kit": "^1.27.2",
+		"@sveltejs/kit": "^2.7.4",
 		"@vite-pwa/sveltekit": "^0.2.7",
 		"chart.js": "^4.4.0",
 		"chartjs-plugin-datalabels": "^2.2.0",
