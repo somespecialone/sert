@@ -10,8 +10,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-#  PUBLIC_API_BASE_URL: https://sert.somespecial.one
-  PUBLIC_API_BASE_URL: https://sert.somespecialone.workers.dev
+  PUBLIC_API_BASE_URL: https://sert.somespecial.one
 
 jobs:
   build:

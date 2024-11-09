@@ -48,11 +48,14 @@
 		<div class="made-with">
 			with
 			<a href="https://svelte.dev/" target="_blank" rel="noreferrer"><Icon icon="ri:svelte-fill" height="1.4rem" /></a>
-			<a href="https://nitro.unjs.io/" target="_blank" rel="noreferrer"><Icon icon="unjs:nitro" height="1.4rem" /></a>
-			<a href="https://www.cloudflare.com/" target="_blank" rel="noreferrer">
-				<Icon icon="devicon-plain:cloudflare" height="1.4rem" />
+			<!--			<a href="https://nitro.unjs.io/" target="_blank" rel="noreferrer"><Icon icon="unjs:nitro" height="1.4rem" /></a>-->
+			<a href="https://deno.com/" target="_blank" rel="noreferrer">
+				<Icon icon="lineicons:deno" height="1.4rem" />
 			</a>
 			<a href="https://github.com/" target="_blank" rel="noreferrer"><Icon icon="mdi:github" height="1.4rem" /></a>
+			<a href="https://steamcommunity.com/" target="_blank" rel="noreferrer">
+				<Icon icon="mdi:steam" height="1.4rem" />
+			</a>
 			<Icon icon="mdi:heart" height="1.4rem" color="#ffce24" />
 		</div>
 	</footer>

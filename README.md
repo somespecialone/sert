@@ -17,19 +17,14 @@
 > 
 > **Web converter [converter.somespecial.one](https://converter.somespecial.one) 🧮**
 > 
-> **API [sert.somespecialone.workers.dev](https://sert.somespecialone.workers.dev)**
+> **API [sert.somespecial.one](https://sert.somespecial.one)**
 >
-> **Python API consumer [aiosteampy.converter](https://github.com/somespecialone/aiosteampy/blob/master/aiosteampy/converter.py)**
-
-## Migration!
-
-> [!WARNING]
-> API has been moved to [sert.somespecialone.workers.dev](https://sert.somespecialone.workers.dev) address
+> **Python API consumer [aiosteampy.converter](https://github.com/somespecialone/aiosteampy/blob/master/aiosteampy/ext/converter.py)**
 
 ## How it works
 
-Every hour on [9 and 39 minute](./deployment/Spacefile) app checks if rates data in db is expired (updated yesterday or even older)
-and if true, [update currency rates](./api/cron/index.ts):
+Every hour on **9 and 39 minute** app checks if rates data in db is expired (updated yesterday or even older)
+and if true, _update currency rates_:
 
 1. Get data of specified item on steammarket for each needed currency.
 2. Calculate exchange rates by comparing item price in previously fetched currencies.
@@ -101,8 +96,8 @@ All currency rates eval to 1 USD 💵.
 
 Examples:
 
-* https://sert.somespecialone.workers.dev/history?length=20
-* https://sert.ssomespecialone.workers.dev/history?all
+* https://sert.somespecial.one/history?length=20
+* https://sert.ssomespecial.one/history?all
 
 
 [//]: # (## Tests 🧪)
