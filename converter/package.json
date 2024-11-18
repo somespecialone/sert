@@ -21,7 +21,7 @@
 		"svelte-check": "^3.5.2",
 		"tslib": "^2.6.2",
 		"vite": "^4.5.0",
-		"vite-plugin-pwa": "^0.16.6",
+		"vite-plugin-pwa": "^0.21.0",
 		"workbox-build": "^7.0.0",
 		"workbox-core": "^7.0.0",
 		"workbox-window": "^7.0.0"
